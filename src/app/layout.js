@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="dark">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-900 dark:text-gray-50`}
       >
         {children}
       </body>

@@ -1,9 +1,5 @@
 import Card from "@/components/ui/Card";
-import axios from "axios";
 export default async function Home() {
-  // const response = await axios.get(`${process.env.BASE_URL}/api/watchlist`);
-  // console.log(response.data);
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 tracking-wide">
       <div className="flex flex-col items-center justify-center w-full">
