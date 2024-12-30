@@ -9,10 +9,12 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setButtonDisabled(true);
 
     if (!username || !password) {
       setError("Username and password are required");
@@ -32,17 +34,26 @@ const Login = () => {
         setUsername("");
         setPassword("");
         console.log(data.status, data.success, data.message);
-        router.push("/login");
+        router.push("/");
         setError(data.message);
       } else {
         const data = await res.json();
         console.log(data);
         setError(data.error || "Login failed");
       }
+      setButtonDisabled(false);
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (username && password) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [username, password]);
 
   return (
     <div className="flex justify-center items-center h-screen tracking-wider">
@@ -72,8 +83,9 @@ const Login = () => {
           />
           <button
             type="submit"
+            disabled={buttonDisabled}
             onClick={handleSubmit}
-            className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none transition-all duration-200 ease-in-out"
+            className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 focus:outline-none disabled:opacity-50 transition-all duration-200 ease-in-out"
           >
             Login
           </button>

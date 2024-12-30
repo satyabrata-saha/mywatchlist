@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const Card = ({
+  id,
   title,
   category,
   genres,
@@ -14,7 +15,7 @@ const Card = ({
 }) => {
   return (
     <div className="flex flex-col justify-start items-center overflow-hidden max-w-42 sm:max-w-52 h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[101%] transition-all duration-300 ease-in-out">
-      <Link href="/">
+      <Link href={`/anime/${id}`}>
         <div className="w-full h-fit ">
           <div className="w-full">
             <Image

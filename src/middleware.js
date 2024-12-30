@@ -1,32 +1,24 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
+import { verifyAuth } from "./lib/auth";
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request) {
-  return NextResponse.redirect(new URL("/", request.url));
+export async function middleware(request = NextRequest) {
+  const path = request.nextUrl.pathname;
+  const isPublicPath = path === "/login" || path === "/welcome";
+
+  const verifiedToken = await verifyAuth(request).catch((err) => {
+    console.error(err.message);
+  });
+
+  // console.log(verifiedToken);
+
+  if (isPublicPath && verifiedToken) {
+    return NextResponse.redirect(new URL("/", request.nextUrl));
+  }
+  if (!isPublicPath && !verifiedToken) {
+    return NextResponse.redirect(new URL("/login", request.nextUrl));
+  }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/about/:path*",
+  matcher: ["/login", "/welcome"],
 };
-
-// import { NextResponse } from "next/server";
-// import { NextRequest } from "next/server";
-
-// export function middleware(NextRequest) {
-//   const path = NextRequest.nextUrl.pathname;
-//   const isPublicPath =
-//     path === "/login" || path === "/signup" || path === "/verifyemail";
-//   const token = NextRequest.cookies.get("token")?.value || "";
-
-//   if (isPublicPath && token) {
-//     return NextResponse.redirect(new URL("/profile", NextRequest.nextUrl));
-//   }
-//   if (!isPublicPath && !token) {
-//     return NextResponse.redirect(new URL("/login", NextRequest.nextUrl));
-//   }
-// }
-
-// export const config = {
-//   matcher: ["/", "/profile", "/login", "/signup", "/verifyemail"],
-// };
