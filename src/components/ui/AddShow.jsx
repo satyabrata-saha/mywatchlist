@@ -1,4 +1,3 @@
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -7,25 +6,22 @@ const AddShow = ({ isAddFormOpen }) => {
   const [data, setData] = useState({
     title: "",
     thumbnail: "",
-    category: "",
+    category: "Anime",
     genres: "",
     startDate: "",
     endDate: "",
-    status: "",
+    status: "Watching",
     rating: 0,
   });
 
   const handleClick = async (e) => {
     e.preventDefault();
     if (
-      !data.title ||
-      !data.thumbnail ||
-      !data.category ||
-      !data.genres ||
-      !data.startDate ||
-      !data.endDate ||
-      !data.status ||
-      !data.rating
+      !data.title &&
+      !data.thumbnail &&
+      !data.category &&
+      !data.genres &&
+      !data.status
     ) {
       alert("Please fill all the fields");
       return;
@@ -45,7 +41,7 @@ const AddShow = ({ isAddFormOpen }) => {
 
       if (res.ok) {
         // router.refresh();
-        revalidatePath("/");
+        alert("Show added successfully");
       } else {
         alert("Something went wrong");
       }
@@ -60,28 +56,30 @@ const AddShow = ({ isAddFormOpen }) => {
     >
       <div className="flex justify-center items-center h-full w-full">
         <form
-          className="flex flex-col items-center justify-center gap-4 w-4/5 sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg"
+          className="flex flex-col items-center justify-center gap-4 w-4/5 sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
           onSubmit={handleClick}
         >
           <input
             type="text"
             placeholder="Show Title"
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
             onChange={(e) => setData({ ...data, title: e.target.value })}
             value={data.title}
+            required
           />
           <input
             type="url"
             placeholder="Thumbnail URL"
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
             onChange={(e) => setData({ ...data, thumbnail: e.target.value })}
             value={data.thumbnail}
+            required
           />
 
           <select
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
             onChange={(e) => setData({ ...data, category: e.target.value })}
-            value={data.category}
+            required
           >
             <option value="Action">Anime</option>
             <option value="Adventure">Manga</option>
@@ -94,16 +92,18 @@ const AddShow = ({ isAddFormOpen }) => {
           <input
             type="text"
             placeholder="Genres"
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
             onChange={(e) => setData({ ...data, genres: e.target.value })}
             value={data.genres}
+            required
           />
           <input
             type="date"
             placeholder="Start Date"
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm "
             onChange={(e) => setData({ ...data, startDate: e.target.value })}
             value={data.startDate}
+            required={false}
           />
           <input
             type="date"
@@ -111,12 +111,13 @@ const AddShow = ({ isAddFormOpen }) => {
             className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
             onChange={(e) => setData({ ...data, endDate: e.target.value })}
             value={data.endDate}
+            required={false}
           />
 
           <select
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
             onChange={(e) => setData({ ...data, status: e.target.value })}
-            value={data.status}
+            required
           >
             <option value="Ongoing">Watching</option>
             <option value="Completed">Completed</option>
@@ -132,6 +133,7 @@ const AddShow = ({ isAddFormOpen }) => {
             className="w-full rounded-md text-black px-3 py-4 focus:outline-none"
             onChange={(e) => setData({ ...data, rating: e.target.value })}
             value={data.rating}
+            required={false}
           />
           <p>Rating: {data.rating}</p>
 

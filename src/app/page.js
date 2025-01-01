@@ -1,15 +1,13 @@
 "use client";
 import { AddShow, Card, Navbar } from "@/components/ui";
 import { Suspense, useEffect, useState } from "react";
+import { setIsLogin } from "./layout";
 
 export default function Home() {
-  const [isLogin, setIsLogin] = useState(false);
   const [watchlistData, setWatchlistData] = useState([]);
-  const [isAddFormOpen, setIsAddFormOpen] = useState(true);
 
   // console.log(watchlistData);
   useEffect(() => {
-    setIsAddFormOpen(true);
     const getData = async () => {
       const res = await fetch("/api/watchlist", {
         method: "GET",
@@ -29,18 +27,8 @@ export default function Home() {
     getData();
   }, []);
 
-  const toggleAddForm = () => {
-    console.log("clicked");
-    setIsAddFormOpen((prev) => !prev);
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-w-full min-h-screen p-4 tracking-wide">
-      <div className="w-full">
-        <Navbar isLogin={isLogin} toggleAddForm={toggleAddForm} />
-        <AddShow isAddFormOpen={isAddFormOpen} />
-      </div>
-
+    <div className="flex flex-col items-center justify-center min-w-full min-h-full p-4 tracking-wide">
       <div className="flex flex-col items-center justify-center w-full">
         <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-4">
           {watchlistData.length > 0 ? (

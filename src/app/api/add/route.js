@@ -37,11 +37,13 @@ export async function POST(request) {
       thumbnail,
       category,
       genres,
-      startDate,
-      endDate,
+      startDate || null,
+      endDate || null,
       status,
-      rating,
+      rating || 0,
     ];
+
+    console.log(values);
 
     const res = await query(q, values);
     // return NextResponse.json(res.rows[0], { status: 200 });

@@ -14,10 +14,10 @@ const Card = ({
   rating,
 }) => {
   return (
-    <div className="flex flex-col justify-start items-center overflow-hidden max-w-42 sm:max-w-52 h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[101%] transition-all duration-300 ease-in-out">
-      <Link href={`/anime/${id}`}>
-        <div className="w-full h-fit ">
-          <div className="w-full">
+    <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[101%] transition-all duration-300 ease-in-out">
+      <Link href={`/anime/${id}`} className="w-full h-full">
+        <div className="w-full h-full flex flex-col justify-between">
+          <div className="w-full h-full">
             <Image
               src={thumbnail}
               alt={title}
@@ -28,7 +28,7 @@ const Card = ({
             />
           </div>
 
-          <div className="flex flex-col items-start justify-center gap-2 w-full ">
+          <div className="flex flex-col items-baseline justify-center gap-2 w-full h-full">
             <h5 className="text-sm text-blue-200/75 font-semibold mt-4 pb-2 text-balance hover:text-blue-300 transition-all duration-200 ease-in-out">
               {title}
             </h5>
