@@ -1,8 +1,7 @@
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { category, status } from "@/lib/constant";
+import { useEffect, useState } from "react";
 
-const AddShow = ({ isAddFormOpen }) => {
-  const router = useRouter();
+const AddShow = ({ isAddFormClose, AddFormClose }) => {
   const [data, setData] = useState({
     title: "",
     thumbnail: "",
@@ -42,6 +41,8 @@ const AddShow = ({ isAddFormOpen }) => {
       if (res.ok) {
         // router.refresh();
         alert("Show added successfully");
+        AddFormClose(true);
+        window.location.reload();
       } else {
         alert("Something went wrong");
       }
@@ -49,14 +50,24 @@ const AddShow = ({ isAddFormOpen }) => {
       console.error(error);
     }
   };
+
+  const handleOutSideClick = () => {
+    AddFormClose(true);
+  };
+
   return (
     <div
-      hidden={isAddFormOpen}
+      hidden={isAddFormClose}
       className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-600/50 w-screen h-screen backdrop-blur-sm z-10 tracking-wider overflow-hidden p-8"
     >
-      <div className="flex justify-center items-center h-full w-full">
+      <div className="flex justify-center items-center h-full w-full ">
+        <div
+          onClick={handleOutSideClick}
+          hidden={isAddFormClose}
+          className="absolute top-0 left-0 w-screen h-screen bg-orange-500 opacity-50 z-0 cursor-pointer"
+        />
         <form
-          className="flex flex-col items-center justify-center gap-4 w-4/5 sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
+          className="z-10 flex flex-col items-center justify-center gap-4 w-4/5 sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
           onSubmit={handleClick}
         >
           <input
@@ -81,12 +92,11 @@ const AddShow = ({ isAddFormOpen }) => {
             onChange={(e) => setData({ ...data, category: e.target.value })}
             required
           >
-            <option value="Action">Anime</option>
-            <option value="Adventure">Manga</option>
-            <option value="Comedy">Movie</option>
-            <option value="Drama">TV Show</option>
-            <option value="Fantasy">Web Series</option>
-            <option value="Horror">Others</option>
+            {category.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
           </select>
 
           <input
@@ -119,9 +129,11 @@ const AddShow = ({ isAddFormOpen }) => {
             onChange={(e) => setData({ ...data, status: e.target.value })}
             required
           >
-            <option value="Ongoing">Watching</option>
-            <option value="Completed">Completed</option>
-            <option value="Upcoming">Unfinished</option>
+            {status.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
           </select>
 
           <input
