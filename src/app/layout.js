@@ -1,5 +1,7 @@
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { FullNavbar } from "@/components/ui";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,11 +13,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "My Watchlist",
-  description:
-    "A simple watchlist app to keep track of my watched, unfinished, currently watching anime, Manga, movies, and TV shows.",
-};
+// export const metadata = {
+//   title: "My Watchlist",
+//   description:
+//     "A simple watchlist app to keep track of my watched, unfinished, currently watching anime, Manga, movies, and TV shows.",
+// };
 
 export default function RootLayout({ children }) {
   return (
@@ -24,6 +26,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-900 dark:text-gray-50 tracking-wide`}
       >
+        <div className="w-full py-4 px-4">
+          <FullNavbar
+          // isLogin={isLogin}
+          // isAddFormClose={isAddFormClose}
+          // toggleAddForm={toggleAddForm}
+          // AddFormClose={AddFormClose}
+          />
+        </div>
         {children}
       </body>
     </html>

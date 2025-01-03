@@ -1,13 +1,25 @@
 import { NextResponse } from "next/server";
 import { query } from "@/lib/db";
 import jwt from "jsonwebtoken";
+import { verifyAuth } from "@/lib/auth";
 
-export async function POST(request) {
+export async function POST(request = NextRequest) {
+  const user = await verifyAuth(request);
+  console.log(user);
+
+  if (user.username) {
+    return NextResponse.json({
+      message: "Unauthorized",
+      status: 401,
+      login: false,
+    });
+  }
+
   const { username, password } = await request.json();
 
   if (!username || !password) {
     return NextResponse.json(
-      { error: "Username and password are required" },
+      { message: "Username and password are required" },
       { status: 400 }
     );
   }
@@ -38,7 +50,7 @@ export async function POST(request) {
       return response;
     } else {
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { message: "Invalid credentials" },
         { status: 401 }
       );
     }

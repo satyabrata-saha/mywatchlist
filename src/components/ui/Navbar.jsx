@@ -32,6 +32,7 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
           </Link>
           <button
             onClick={toggleAddForm}
+            hidden={!isLogin}
             className="bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-1 px-3.5 rounded-full transition-all duration-150 ease-in-out"
           >
             Add

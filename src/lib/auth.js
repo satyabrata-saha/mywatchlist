@@ -4,7 +4,11 @@ import { SignJWT, jwtVerify } from "jose";
 export async function verifyAuth(req = NextRequest) {
   const token = req.cookies.get("user")?.value || "";
 
-  if (!token) throw new Error("Missing user token");
+  if (!token)
+    return NextResponse.json({
+      message: "Missing user token",
+      status: 401,
+    });
 
   try {
     const verified = await jwtVerify(
@@ -14,6 +18,9 @@ export async function verifyAuth(req = NextRequest) {
 
     return verified.payload;
   } catch (err) {
-    throw new Error("Your token has expired or is invalid");
+    return NextResponse.json({
+      message: "Your token has expired or is invalid",
+      status: 401,
+    });
   }
 }

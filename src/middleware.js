@@ -5,9 +5,10 @@ export async function middleware(request = NextRequest) {
   const path = request.nextUrl.pathname;
   const isPublicPath = path === "/login" || path === "/welcome";
 
-  const verifiedToken = await verifyAuth(request).catch((err) => {
-    console.error(err.message);
-  });
+  const user = await verifyAuth(request);
+  console.log(user.username);
+
+  const verifiedToken = user.username;
 
   // console.log(verifiedToken);
 
