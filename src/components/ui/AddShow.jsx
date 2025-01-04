@@ -82,7 +82,7 @@ const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
           className="absolute top-0 left-0 w-screen h-screen bg-orange-500 opacity-50 z-0 cursor-pointer"
         />
         <form
-          className="z-10 flex flex-col items-center justify-center gap-4 w-4/5 sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
+          className="z-10 flex flex-col items-center justify-center gap-4 w-full sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
           onSubmit={handleClick}
         >
           <input

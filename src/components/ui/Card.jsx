@@ -62,7 +62,7 @@ const Card = ({
               <span className="text-slate-100/75">Status: </span>
               <span>{status}</span>
             </p>
-            <p className="text-xs text-yellow-200/50">
+            <p className="text-xs text-yellow-500/50">
               <span className="text-slate-100/75">Rating: </span>
               <span>{rating}</span>
               <span className="text-slate-100/75"> /10</span>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { AddShow, CategoryNavbar, Navbar } from "@/components/ui";
+import { AddShow, CategoryNavbar, Navbar, SearchBar } from "@/components/ui";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
@@ -49,6 +49,9 @@ const FullNavbar = () => {
       <hr className="my-4 opacity-10" />
       <CategoryNavbar />
       <hr className="mt-4 opacity-10" />
+      <SearchBar isLogin={isLogin} />
+      <hr className="opacity-10" hidden={!isLogin} />
+
       <AddShow
         isAddFormClose={isAddFormClose}
         AddFormClose={AddFormClose}

@@ -3,7 +3,7 @@ import { verifyAuth } from "./lib/auth";
 
 export async function middleware(request = NextRequest) {
   const path = request.nextUrl.pathname;
-  const isPublicPath = path === "/login" || path === "/watchlist";
+  const isPublicPath = path === "/login" || path === "/";
 
   const user = await verifyAuth(request);
   console.log(user.username);
@@ -21,5 +21,5 @@ export async function middleware(request = NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/welcome"],
+  matcher: ["/login", "/watchlist"],
 };
