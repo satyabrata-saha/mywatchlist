@@ -1,7 +1,7 @@
 import { category, status } from "@/lib/constant";
 import { useEffect, useState } from "react";
 
-const AddShow = ({ isAddFormClose, AddFormClose }) => {
+const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
   const [data, setData] = useState({
     title: "",
     thumbnail: "",
@@ -12,6 +12,7 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
     status: "Watching",
     rating: 0,
   });
+  const [error, setError] = useState("");
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -36,14 +37,28 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
           data,
         }),
       });
-      console.log(res);
+      const result = await res.json();
+      console.log(result);
 
-      if (res.ok) {
+      if (result.login === false) {
+        toastMessage("Please login to add show");
+        // setError("Please login to add show");
+        // alert("Please login to add show");
+        return;
+      }
+
+      if (result.login === true) {
         // router.refresh();
-        alert("Show added successfully");
+        // alert("Show added successfully");
+        toastMessage("Show added successfully");
+        setError("Show added successfully");
+
         AddFormClose(true);
-        window.location.reload();
+        // window.location.reload();
       } else {
+        // setError("Error");
+        toastMessage("Something went wrong");
+
         alert("Something went wrong");
       }
     } catch (error) {
@@ -147,7 +162,7 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
             value={data.rating}
             required={false}
           />
-          <p>Rating: {data.rating}</p>
+          <p className="w-full">Rating: {data.rating}</p>
 
           <button
             type="submit"

@@ -5,7 +5,7 @@ import { verifyAuth } from "@/lib/auth";
 
 export async function POST(request = NextRequest) {
   const user = await verifyAuth(request);
-  console.log(user);
+  // console.log(user);
 
   if (user.username) {
     return NextResponse.json({

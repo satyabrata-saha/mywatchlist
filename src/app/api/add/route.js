@@ -1,8 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { query } from "@/lib/db";
 import jwt from "jsonwebtoken";
+import { verifyAuth } from "@/lib/auth";
 
-export async function POST(request) {
+export async function POST(request = NextRequest) {
+  const user = await verifyAuth(request);
+
+  if (!user.username) {
+    return NextResponse.json({
+      message: "Unauthorized",
+      status: 401,
+      login: false,
+    });
+  }
+
   const fromFrontendData = await request.json();
   const {
     title,
@@ -48,8 +59,8 @@ export async function POST(request) {
     const res = await query(q, values);
     // return NextResponse.json(res.rows[0], { status: 200 });
 
-    return NextResponse.json({ message: "Success" }, { status: 200 });
+    return NextResponse.json({ message: "Success", status: 200, login: true });
   } catch (err) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ message: "Unauthorized", status: 401 });
   }
 }

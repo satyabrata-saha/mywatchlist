@@ -26,13 +26,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-900 dark:text-gray-50 tracking-wide`}
       >
-        <div className="w-full py-4 px-4">
-          <FullNavbar
-          // isLogin={isLogin}
-          // isAddFormClose={isAddFormClose}
-          // toggleAddForm={toggleAddForm}
-          // AddFormClose={AddFormClose}
-          />
+        <div className="w-full py-4 px-0">
+          <FullNavbar />
         </div>
         {children}
       </body>

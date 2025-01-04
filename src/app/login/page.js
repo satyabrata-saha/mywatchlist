@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const router = useRouter();
@@ -36,6 +37,7 @@ const Login = () => {
         console.log(data.status, data.success, data.message);
         router.push("/");
         setError(data.message);
+        toast(data.message);
       } else {
         const data = await res.json();
         console.log(data);
@@ -56,7 +58,7 @@ const Login = () => {
   }, [username, password]);
 
   return (
-    <div className="flex justify-center items-center h-screen tracking-wider">
+    <div className="flex justify-center items-center h-[60vh] tracking-wider">
       <div className="flex flex-col items-center justify-center gap-4 text-center bg-slate-900 rounded-md shadow-lg p-8 w-72 md:w-80">
         <form
           onSubmit={handleSubmit}
@@ -99,6 +101,7 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

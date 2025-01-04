@@ -17,14 +17,14 @@ const Card = ({
     <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[101%] transition-all duration-300 ease-in-out">
       <Link href={`/anime/${id}`} className="w-full h-full">
         <div className="w-full h-full flex flex-col justify-between">
-          <div className="w-full h-full">
+          <div className="w-full h-[275px] flex items-center justify-center">
             <Image
               src={thumbnail}
               alt={title}
               priority={true}
               width={150}
               height={150}
-              className="rounded-lg object-fill w-full h-full hover:scale-[102%] transition-all duration-300 ease-in-out"
+              className="rounded-lg object-center w-full h-full hover:scale-[102%] transition-all duration-300 ease-in-out"
             />
           </div>
 
@@ -65,6 +65,7 @@ const Card = ({
             <p className="text-xs text-yellow-200/50">
               <span className="text-slate-100/75">Rating: </span>
               <span>{rating}</span>
+              <span className="text-slate-100/75"> /10</span>
             </p>
           </div>
         </div>

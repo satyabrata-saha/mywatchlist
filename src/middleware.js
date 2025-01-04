@@ -3,7 +3,7 @@ import { verifyAuth } from "./lib/auth";
 
 export async function middleware(request = NextRequest) {
   const path = request.nextUrl.pathname;
-  const isPublicPath = path === "/login" || path === "/welcome";
+  const isPublicPath = path === "/login" || path === "/watchlist";
 
   const user = await verifyAuth(request);
   console.log(user.username);

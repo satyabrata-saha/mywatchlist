@@ -1,9 +1,10 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { AddShow, CategoryNavbar, Navbar } from "@/components/ui";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+
 const FullNavbar = () => {
   const router = useRouter();
 
@@ -35,14 +36,12 @@ const FullNavbar = () => {
     }
   };
 
+  const toastMessage = (message) => toast(message, { theme: "dark" });
+
   useEffect(() => {
     setIsAddFormClose(true);
     getCookieSetLoginState();
   }, []);
-
-  useEffect(() => {
-    console.log(isLogin);
-  }, [isLogin]);
 
   return (
     <div className="w-full h-fit items-start">
@@ -50,7 +49,12 @@ const FullNavbar = () => {
       <hr className="my-4 opacity-10" />
       <CategoryNavbar />
       <hr className="mt-4 opacity-10" />
-      <AddShow isAddFormClose={isAddFormClose} AddFormClose={AddFormClose} />
+      <AddShow
+        isAddFormClose={isAddFormClose}
+        AddFormClose={AddFormClose}
+        toastMessage={toastMessage}
+      />
+      <ToastContainer />
     </div>
   );
 };

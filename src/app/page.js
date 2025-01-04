@@ -7,7 +7,7 @@ export default function Home() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch("/api/watchlist", {
+      const res = await fetch("/api/watchlist/last10", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full p-4">
-      <div className="flex flex-col items-center justify-center w-full">
+      <div className="flex flex-col items-center justify-center w-full sm:w-[85%] lg:w-[95%] xl:w-[85%]">
         <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-4">
           {watchlistData.length > 0 ? (
             watchlistData.map((item) => (

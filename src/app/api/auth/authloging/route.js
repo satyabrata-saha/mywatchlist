@@ -4,7 +4,7 @@ import { verifyAuth } from "@/lib/auth";
 
 export async function POST(request = NextRequest) {
   const user = await verifyAuth(request);
-  console.log(user);
+  // console.log(user);
 
   if (!user.username) {
     return NextResponse.json({
@@ -15,11 +15,11 @@ export async function POST(request = NextRequest) {
   }
 
   try {
-    const q = "SELECT * FROM users WHERE username = $1";
+    const q = "SELECT username FROM users WHERE username = $1";
     const values = [user.username];
 
     const res = await query(q, values);
-    console.log(res.rows);
+    // console.log(res.rows[0].username);
 
     if (res.rows.length === 0) {
       return NextResponse.json({
@@ -33,6 +33,7 @@ export async function POST(request = NextRequest) {
       status: 200,
       message: "Authorized",
       login: true,
+      username: res.rows[0].username,
     });
   } catch (error) {
     console.error(error);
