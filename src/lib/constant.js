@@ -3,9 +3,9 @@ const category = [
   "Manga",
   "Movie",
   "TV Show",
-  "Web Series",
   "OVA",
   "ONA",
+  "Web Series",
   "Others",
 ];
 

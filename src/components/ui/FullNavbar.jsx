@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 
-const FullNavbar = () => {
+const FullNavbar = ({ search }) => {
   const router = useRouter();
 
   const [isLogin, setIsLogin] = useState(false);
@@ -49,7 +49,7 @@ const FullNavbar = () => {
       <hr className="my-4 opacity-10" />
       <CategoryNavbar />
       <hr className="mt-4 opacity-10" />
-      <SearchBar isLogin={isLogin} />
+      <SearchBar isLogin={isLogin} search={search} />
       <hr className="opacity-10" hidden={!isLogin} />
 
       <AddShow

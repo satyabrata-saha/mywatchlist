@@ -4,8 +4,8 @@ import React from "react";
 
 const Navbar = ({ isLogin, toggleAddForm }) => {
   return (
-    <nav className="flex justify-center items-start w-full h-fit overflow-hidden px-2 sm:px-4">
-      <div className="flex gap-4 items-center justify-between w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
+    <nav className="flex justify-center items-start w-full h-fit overflow-hidden p-0">
+      <div className="flex gap-4 items-center justify-between w-full">
         <div>
           <Link href="/">
             <h1 className="text-xl font-semibold start-0 dark:text-orange-500 dark:hover:text-orange-600 transition-all duration-200 ease-in-out">

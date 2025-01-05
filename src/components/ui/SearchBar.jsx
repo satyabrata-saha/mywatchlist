@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const SearchBar = ({ isLogin }) => {
+const SearchBar = ({ isLogin, search }) => {
   const [searchValue, setSearchValue] = useState("");
 
-  
+  const handleSearchInput = (e) => {
+    e.preventDefault();
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearch = async () => {
+    await search(searchValue);
+  };
+
+  useEffect(() => {
+    handleSearch();
+  }, [searchValue]);
 
   return (
-    <div className="h-fit w-full px-4 py-4" hidden={!isLogin}>
-      <form className="max-w-xl mx-auto">
+    <div className="h-fit w-full py-4" hidden={!isLogin}>
+      <div className="max-w-2xl mx-auto">
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -35,18 +46,21 @@ const SearchBar = ({ isLogin }) => {
           <input
             type="search"
             id="default-search"
+            onChange={(e) => handleSearchInput(e)}
+            value={searchValue}
             className="block w-full p-4 ps-10 text-sm bg-slate-900 border border-slate-800 rounded-full text-slate-50 focus:outline-none "
             placeholder="Search for Shows..."
             required
           />
           <button
             type="submit"
+            onClick={handleSearch}
             className="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2"
           >
             Search
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
