@@ -1,4 +1,4 @@
-import { category, status } from "@/lib/constant";
+import { category, statusArray } from "@/lib/constant";
 import { useEffect, useState } from "react";
 
 const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
@@ -144,9 +144,9 @@ const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
             onChange={(e) => setData({ ...data, status: e.target.value })}
             required
           >
-            {status.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
+            {statusArray.map((item) => (
+              <option key={item.id} value={item.name}>
+                {item.name}
               </option>
             ))}
           </select>

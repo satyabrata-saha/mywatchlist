@@ -26,7 +26,7 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
           <Link
             href="/login"
             hidden={isLogin}
-            className=" py-1 px-3.5 text-sm font-medium text-slate-50 focus:outline-none rounded-full border border-orange-500 hover:bg-orange-500 transition-all duration-150 ease-in-out"
+            className=" py-1 px-3.5 text-sm text-slate-50 focus:outline-none rounded-full border border-orange-500 hover:bg-orange-500 transition-all duration-150 ease-in-out"
           >
             Login
           </Link>

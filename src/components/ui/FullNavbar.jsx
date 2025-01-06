@@ -1,11 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { AddShow, CategoryNavbar, Navbar, SearchBar } from "@/components/ui";
+import {
+  AddShow,
+  CategoryNavbar,
+  Navbar,
+  SearchBar,
+  StatusNavbar,
+} from "@/components/ui";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 
-const FullNavbar = ({ search }) => {
+const FullNavbar = ({ search, hidden = false }) => {
   const router = useRouter();
 
   const [isLogin, setIsLogin] = useState(false);
@@ -46,11 +52,13 @@ const FullNavbar = ({ search }) => {
   return (
     <div className="w-full h-fit items-start">
       <Navbar isLogin={isLogin} toggleAddForm={toggleAddForm} />
-      <hr className="my-4 opacity-10" />
-      <CategoryNavbar />
-      <hr className="mt-4 opacity-10" />
-      <SearchBar isLogin={isLogin} search={search} />
-      <hr className="opacity-10" hidden={!isLogin} />
+      <hr className="my-2 opacity-10" />
+      <CategoryNavbar hidden={hidden} />
+      <hr className="my-2 opacity-0" />
+      <SearchBar isLogin={isLogin} search={search} hidden={hidden} />
+      <hr className="my-2 opacity-0" hidden={!isLogin} />
+      <StatusNavbar hidden={hidden} />
+      <hr className="mt-2 opacity-10" hidden={hidden} />
 
       <AddShow
         isAddFormClose={isAddFormClose}

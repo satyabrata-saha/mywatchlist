@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const SearchBar = ({ isLogin, search }) => {
+const SearchBar = ({ isLogin, search, hidden }) => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearchInput = (e) => {
@@ -17,7 +17,7 @@ const SearchBar = ({ isLogin, search }) => {
   }, [searchValue]);
 
   return (
-    <div className="h-fit w-full py-4" hidden={!isLogin}>
+    <div className="h-fit w-full" hidden={!isLogin || hidden}>
       <div className="max-w-2xl mx-auto">
         <label
           htmlFor="default-search"

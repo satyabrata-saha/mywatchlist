@@ -38,7 +38,7 @@ const Watchlist = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
       <div className="flex flex-col items-center justify-center w-full sm:w-[85%] lg:w-[95%] xl:w-[85%]">
-        <div className="w-full py-4 px-0">
+        <div className="w-full pt-4 px-0">
           <FullNavbar search={searchShow} />
         </div>
         <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mt-4">
