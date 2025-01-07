@@ -1,6 +1,5 @@
 "use client";
 import { CategoryNavbar, FullNavbar } from "@/components/ui";
-import React from "react";
 
 const Category = () => {
   return (
@@ -12,7 +11,8 @@ const Category = () => {
         <div className="w-full h-full">
           <CategoryNavbar
             hidden={false}
-            className="text-xl font-bold dark:text-slate-50 px-8 py-4 m-2 rounded-lg"
+            className="text-xl font-bold dark:text-slate-200 px-8 py-4 m-2 rounded-lg"
+            gridClass="grid grid-cols-2 grid-rows-* gap-2 text-center"
           />
         </div>
       </div>

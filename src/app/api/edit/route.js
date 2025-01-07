@@ -28,7 +28,7 @@ export async function POST(request = NextRequest) {
     data.rating,
     id,
   ];
-  console.log(values);
+  // console.log(values);
 
   try {
     const res = await query(q, values);

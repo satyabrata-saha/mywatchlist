@@ -36,7 +36,7 @@ export async function POST(request = NextRequest) {
     const decoded = jwt.verify(token, process.env.TOKON_SECRET);
 
     const username = decoded.username;
-    console.log(username);
+    // console.log(username);
 
     const q = `
       INSERT INTO watchlist_items (title, thumbnail, category, genres, start_date, end_date, status, rating)
@@ -54,7 +54,7 @@ export async function POST(request = NextRequest) {
       rating || 0,
     ];
 
-    console.log(values);
+    // console.log(values);
 
     const res = await query(q, values);
     // return NextResponse.json(res.rows[0], { status: 200 });

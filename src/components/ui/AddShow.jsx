@@ -1,7 +1,8 @@
 import { category, statusArray } from "@/lib/constant";
+import toastMessage from "@/lib/toastMessage";
 import { useEffect, useState } from "react";
 
-const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
+const AddShow = ({ isAddFormClose, AddFormClose }) => {
   const [data, setData] = useState({
     title: "",
     thumbnail: "",
@@ -12,7 +13,7 @@ const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
     status: "Watching",
     rating: 0,
   });
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -42,23 +43,15 @@ const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
 
       if (result.login === false) {
         toastMessage("Please login to add show");
-        // setError("Please login to add show");
-        // alert("Please login to add show");
         return;
       }
 
       if (result.login === true) {
-        // router.refresh();
-        // alert("Show added successfully");
         toastMessage("Show added successfully");
-        setError("Show added successfully");
-
+        setMessage("Show added successfully");
         AddFormClose(true);
-        // window.location.reload();
       } else {
-        // setError("Error");
         toastMessage("Something went wrong");
-
         alert("Something went wrong");
       }
     } catch (error) {

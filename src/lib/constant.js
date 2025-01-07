@@ -8,8 +8,7 @@ const category = [
   {
     id: 2,
     name: "Manga",
-    bgImage:
-      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+    bgImage: "https://cdn.myanimelist.net/images/anime/1463/145502.jpg",
   },
   {
     id: 3,

@@ -1,9 +1,9 @@
 "use client";
 import { FullNavbar } from "@/components/ui";
+import toastMessage from "@/lib/toastMessage";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const router = useRouter();
@@ -11,14 +11,9 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const toastMessage = (message) =>
-    toast(message, {
-      theme: "dark",
-      autoClose: 2000,
-      position: "bottom-right",
-    });
+  const [message, setMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -44,18 +39,18 @@ const Login = () => {
         setPassword("");
         console.log(data.status, data.success, data.message);
         setError(data.message);
-        toastMessage(data.message);
+        setMessage(data.message);
         router.push("/");
       } else {
         const data = await res.json();
         // console.log(data);
         setError(data.error || "Login failed");
-        toastMessage(data.error || "Login failed");
+        setMessage(data.error || "Login failed");
       }
       setButtonDisabled(false);
     } catch (error) {
       console.error(error);
-      toastMessage("Something went wrong");
+      setMessage("Something went wrong");
     }
   };
 
@@ -66,6 +61,10 @@ const Login = () => {
       setButtonDisabled(true);
     }
   }, [username, password]);
+
+  useEffect(() => {
+    if (message.length > 0) toastMessage(message);
+  }, [message]);
 
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4 overflow-hidden">
@@ -116,7 +115,6 @@ const Login = () => {
               </Link>
             </div>
           </div>
-          <ToastContainer />
         </div>
       </div>
     </div>

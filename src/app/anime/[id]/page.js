@@ -1,11 +1,12 @@
 "use client";
 import { FullNavbar } from "@/components/ui";
 import { category, statusArray } from "@/lib/constant";
-import { useParams } from "next/navigation";
+import toastMessage from "@/lib/toastMessage";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast, CloseButton } from "react-toastify";
 
 const SinglePage = () => {
+  const router = useRouter();
   const { id } = useParams();
   const [data, setData] = useState({
     title: "",
@@ -18,13 +19,7 @@ const SinglePage = () => {
     rating: 0,
   });
   const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  const toastMessage = (message) =>
-    toast(message, {
-      theme: "dark",
-      autoClose: 2000,
-      position: "bottom-right",
-    });
+  const [message, setMessage] = useState("");
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -55,6 +50,9 @@ const SinglePage = () => {
 
       if (result.login === true) {
         toastMessage("Show Updated successfully");
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
       } else {
         toastMessage("Something went wrong");
       }
@@ -77,6 +75,7 @@ const SinglePage = () => {
     const data = await res.json();
 
     const watchlistData = data.data[0];
+    setMessage(data.message);
 
     setData({
       title: watchlistData.title,
@@ -95,6 +94,10 @@ const SinglePage = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    if (message.length > 0) toastMessage(message);
+  }, [message]);
 
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
@@ -195,7 +198,6 @@ const SinglePage = () => {
           </form>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

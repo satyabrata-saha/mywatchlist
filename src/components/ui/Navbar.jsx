@@ -1,6 +1,7 @@
 import { links } from "@/lib/constant";
 import Link from "next/link";
 import React from "react";
+import Logout from "./Logout";
 
 const Navbar = ({ isLogin, toggleAddForm }) => {
   return (
@@ -37,6 +38,7 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
           >
             Add
           </button>
+          {/* <Logout hidden={!isLogin} /> */}
         </div>
       </div>
     </nav>

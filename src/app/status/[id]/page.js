@@ -1,21 +1,16 @@
 "use client";
 import { Card, FullNavbar } from "@/components/ui";
+import toastMessage from "@/lib/toastMessage";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
 
 const StatusSingle = () => {
   const { id } = useParams();
   const urlData = id.split("%20").join(" ");
 
   const [watchlistData, setWatchlistData] = useState([]);
-  const toastMessage = (message) =>
-    toast(message, {
-      theme: "dark",
-      autoClose: 2000,
-      position: "bottom-right",
-    });
+  const [message, setMessage] = useState("");
 
   const searchShow = async (title) => {
     if (!title) {
@@ -44,11 +39,15 @@ const StatusSingle = () => {
     const data = await res.json();
 
     setWatchlistData(data.data || []);
-    toastMessage(data.message);
+    setMessage(data.message);
   };
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    if (message.length > 0) toastMessage(message);
+  }, [message]);
 
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
@@ -95,7 +94,6 @@ const StatusSingle = () => {
           </Link>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

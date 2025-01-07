@@ -7,9 +7,7 @@ import {
   SearchBar,
   StatusNavbar,
 } from "@/components/ui";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
 
 const FullNavbar = ({ search, hidden = false }) => {
   const router = useRouter();
@@ -42,13 +40,6 @@ const FullNavbar = ({ search, hidden = false }) => {
     }
   };
 
-  const toastMessage = (message) =>
-    toast(message, {
-      theme: "dark",
-      autoClose: 2000,
-      position: "bottom-right",
-    });
-
   useEffect(() => {
     setIsAddFormClose(true);
     getCookieSetLoginState();
@@ -65,12 +56,7 @@ const FullNavbar = ({ search, hidden = false }) => {
       <StatusNavbar hidden={hidden} />
       <hr className="mt-2 opacity-10" hidden={hidden} />
 
-      <AddShow
-        isAddFormClose={isAddFormClose}
-        AddFormClose={AddFormClose}
-        toastMessage={toastMessage}
-      />
-      <ToastContainer />
+      <AddShow isAddFormClose={isAddFormClose} AddFormClose={AddFormClose} />
     </div>
   );
 };
