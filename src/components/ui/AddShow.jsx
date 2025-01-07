@@ -107,9 +107,9 @@ const AddShow = ({ isAddFormClose, AddFormClose, toastMessage }) => {
             onChange={(e) => setData({ ...data, category: e.target.value })}
             required
           >
-            {category.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
+            {category.map((item) => (
+              <option key={item.id} value={item.name}>
+                {item.name}
               </option>
             ))}
           </select>

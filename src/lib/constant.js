@@ -1,39 +1,84 @@
 const category = [
-  "Anime",
-  "Manga",
-  "Movie",
-  "TV Show",
-  "OVA",
-  "ONA",
-  "Web Series",
-  "Others",
+  {
+    id: 1,
+    name: "Anime",
+    bgImage:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiuxE7z7dj2nEuRBvRBYekdz1NDVTZmg8ciQ&s",
+  },
+  {
+    id: 2,
+    name: "Manga",
+    bgImage:
+      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+  },
+  {
+    id: 3,
+    name: "Movie",
+    bgImage:
+      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+  },
+  {
+    id: 4,
+    name: "TV Show",
+    bgImage:
+      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+  },
+  {
+    id: 5,
+    name: "OVA",
+    bgImage:
+      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+  },
+  {
+    id: 6,
+    name: "ONA",
+    bgImage:
+      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+  },
+  {
+    id: 7,
+    name: "Web Series",
+    bgImage:
+      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+  },
+  {
+    id: 8,
+    name: "Others",
+    bgImage:
+      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+  },
 ];
 
 const statusArray = [
   {
     id: 1,
     name: "Watching",
-    bgcolor: "bg-blue-500",
+    bgcolor: "dark:bg-blue-500",
+    bgcolorHover: "dark:hover:bg-blue-600",
   },
   {
     id: 2,
     name: "Completed",
-    bgcolor: "bg-green-500",
+    bgcolor: "dark:bg-green-500",
+    bgcolorHover: "dark:hover:bg-green-600",
   },
   {
     id: 3,
     name: "On Hold",
-    bgcolor: "bg-yellow-500",
+    bgcolor: "dark:bg-yellow-500",
+    bgcolorHover: "dark:hover:bg-yellow-600",
   },
   {
     id: 4,
     name: "Dropped",
-    bgcolor: "bg-red-500",
+    bgcolor: "dark:bg-red-500",
+    bgcolorHover: "dark:hover:bg-red-600",
   },
   {
     id: 5,
     name: "Plan to Watch",
-    bgcolor: "bg-slate-500",
+    bgcolor: "dark:bg-slate-700",
+    bgcolorHover: "dark:hover:bg-slate-800",
   },
 ];
 

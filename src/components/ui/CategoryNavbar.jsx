@@ -7,15 +7,20 @@ const CategoryNavbar = ({ hidden, className }) => {
     <div hidden={hidden} className="w-full">
       <div className="flex items-center justify-center flex-wrap h-fit w-full">
         <div className="flex gap-2 items-center justify-center flex-wrap max-w-2xl mx-auto">
-          {category.map((item, index) => (
-            <Link key={index} href={`/category/${item}`}>
+          {category.map((item) => (
+            <Link key={item.id} href={`/category/${item.name}`}>
               <div
                 className={`${
                   className ||
-                  "text-sm font-medium px-3.5 py-1.5 rounded-full dark:bg-gray-700 dark:text-slate-300 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out"
-                }`}
+                  "text-sm font-medium px-3.5 py-1.5 dark:text-slate-700 dark:bg-slate-700 dark:hover:bg-slate-800"
+                } rounded-full hover:scale-[105%] transition-all duration-200 ease-in-out`}
+                style={{
+                  backgroundImage: `url(${item.bgImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
               >
-                {item}
+                {item.name}
               </div>
             </Link>
           ))}

@@ -10,9 +10,9 @@ const StatusNavbar = ({ hidden }) => {
           {statusArray.map((item) => (
             <Link key={item.id} href={`/status/${item.name}`}>
               <div
-                className={`${
-                  item.bgcolor || "dark:bg-slate-700"
-                } text-sm font-medium px-3.5 py-1.5 rounded-full dark:text-slate-300 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out`}
+                className={`${item.bgcolor || "dark:bg-slate-700"} ${
+                  item.bgcolorHover || "dark:hover:bg-slate-800"
+                } text-sm font-medium px-3.5 py-1.5 rounded-full dark:text-slate-50 hover:scale-[105%] transition-all duration-200 ease-in-out`}
               >
                 {item.name}
               </div>

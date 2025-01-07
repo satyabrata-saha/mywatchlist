@@ -21,7 +21,8 @@ const Card = ({
             <Image
               src={thumbnail || "/placeholder.png"}
               alt={title}
-              priority={true}
+              placeholder="blur"
+              blurDataURL={thumbnail || "/placeholder.png"}
               width={150}
               height={150}
               className="rounded-lg object-center w-full h-full hover:scale-[102%] transition-all duration-300 ease-in-out"

@@ -13,7 +13,7 @@ const Category = () => {
         <div className="w-full h-full">
           <CategoryNavbar
             hidden={false}
-            className="text-lg bg-slate-700 px-8 py-4 m-2 rounded-full hover:bg-slate-800 transition-all duration-200 ease-in-out"
+            className="text-xl font-bold dark:text-slate-50 px-8 py-4 m-2 rounded-lg"
           />
         </div>
       </div>

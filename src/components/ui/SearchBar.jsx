@@ -55,7 +55,7 @@ const SearchBar = ({ isLogin, search, hidden }) => {
           <button
             type="submit"
             onClick={handleSearch}
-            className="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2"
+            className="text-white absolute end-2.5 bottom-2.5 dark:bg-orange-500 dark:hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 transition-all duration-200 ease-in-out"
           >
             Search
           </button>
