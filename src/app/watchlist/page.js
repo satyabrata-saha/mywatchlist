@@ -1,9 +1,17 @@
 "use client";
 import { Card, FullNavbar } from "@/components/ui";
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Watchlist = () => {
   const [watchlistData, setWatchlistData] = useState([]);
+
+  const toastMessage = (message) =>
+    toast(message, {
+      theme: "dark",
+      autoClose: 2000,
+      position: "bottom-right",
+    });
   const searchShow = async (title) => {
     if (!title) {
       getData();
@@ -17,8 +25,9 @@ const Watchlist = () => {
         body: JSON.stringify({ title: title }),
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       setWatchlistData(data.data);
+      toastMessage(data.message);
     }
   };
   const getData = async () => {
@@ -30,6 +39,7 @@ const Watchlist = () => {
     });
     const data = await res.json();
     setWatchlistData(data.data);
+    toastMessage(data.message);
   };
 
   useEffect(() => {
@@ -67,6 +77,7 @@ const Watchlist = () => {
           )}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

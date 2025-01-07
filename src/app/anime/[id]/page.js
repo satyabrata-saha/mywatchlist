@@ -1,9 +1,9 @@
 "use client";
 import { FullNavbar } from "@/components/ui";
-import { category, status } from "@/lib/constant";
+import { category, statusArray } from "@/lib/constant";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, CloseButton } from "react-toastify";
 
 const SinglePage = () => {
   const { id } = useParams();
@@ -19,11 +19,18 @@ const SinglePage = () => {
   });
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
+  const toastMessage = (message) =>
+    toast(message, {
+      theme: "dark",
+      autoClose: 2000,
+      position: "bottom-right",
+    });
+
   const handleClick = async (e) => {
     e.preventDefault();
     setButtonDisabled(true);
     if (!data.title && !data.category && !data.genres && !data.status) {
-      toast("Please fill all the fields");
+      toastMessage("Please fill all the fields");
       return;
     }
 
@@ -39,29 +46,24 @@ const SinglePage = () => {
         }),
       });
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
 
       if (result.login === false) {
-        toast("Please login to add show");
+        toastMessage("Please login to add show");
         return;
       }
 
       if (result.login === true) {
-        toast("Show Updated successfully");
+        toastMessage("Show Updated successfully");
       } else {
-        toast("Something went wrong");
+        toastMessage("Something went wrong");
       }
     } catch (error) {
+      toastMessage("Something went wrong");
       console.error(error);
     }
 
     setButtonDisabled(false);
-  };
-
-  const searchShow = async (title) => {
-    if (!title) {
-      return;
-    }
   };
 
   const getData = async () => {
@@ -98,7 +100,7 @@ const SinglePage = () => {
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
       <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
-          <FullNavbar search={searchShow} hidden={true} />
+          <FullNavbar search={() => {}} hidden={true} />
         </div>
         <div className="flex items-center justify-center flex-wrap h-fit w-full">
           <form
@@ -126,9 +128,9 @@ const SinglePage = () => {
               onChange={(e) => setData({ ...data, category: e.target.value })}
               required
             >
-              {category.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
+              {category.map((item) => (
+                <option key={item.id} value={item.name}>
+                  {item.name}
                 </option>
               ))}
             </select>
@@ -163,9 +165,9 @@ const SinglePage = () => {
               onChange={(e) => setData({ ...data, status: e.target.value })}
               required
             >
-              {status.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
+              {statusArray.map((item) => (
+                <option key={item.id} value={item.name}>
+                  {item.name}
                 </option>
               ))}
             </select>
@@ -192,8 +194,8 @@ const SinglePage = () => {
             </button>
           </form>
         </div>
-        <ToastContainer autoClose={8000} />
       </div>
+      <ToastContainer />
     </div>
   );
 };

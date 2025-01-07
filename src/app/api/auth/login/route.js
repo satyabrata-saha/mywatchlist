@@ -9,9 +9,9 @@ export async function POST(request = NextRequest) {
 
   if (user.username) {
     return NextResponse.json({
-      message: "Unauthorized",
+      message: "Already logged in",
       status: 401,
-      login: false,
+      login: true,
     });
   }
 
@@ -49,12 +49,10 @@ export async function POST(request = NextRequest) {
 
       return response;
     } else {
-      return NextResponse.json(
-        { message: "Invalid credentials" },
-        { status: 401 }
-      );
+      return NextResponse.json({ message: "Invalid credentials", status: 401 });
     }
   } catch (error) {
     console.log(error);
+    return NextResponse.json({ message: "Something went wrong", status: 500 });
   }
 }

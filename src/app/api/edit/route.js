@@ -5,15 +5,15 @@ import { verifyAuth } from "@/lib/auth";
 export async function POST(request = NextRequest) {
   const { id, data } = await request.json();
 
-  //   const user = await verifyAuth(request);
+  const user = await verifyAuth(request);
 
-  //   if (!user.username) {
-  //     return NextResponse.json({
-  //       message: "Unauthorized",
-  //       status: 401,
-  //       login: false,
-  //     });
-  //   }
+  if (!user.username) {
+    return NextResponse.json({
+      message: "Unauthorized Login Required for this action",
+      status: 401,
+      login: false,
+    });
+  }
   const q =
     "UPDATE watchlist_items SET (title, category, genres, start_date, end_date, thumbnail, status, rating) = ($1, $2, $3, $4, $5, $6, $7, $8) WHERE id=$9 RETURNING *";
 
@@ -30,11 +30,19 @@ export async function POST(request = NextRequest) {
   ];
   console.log(values);
 
-  const res = await query(q, values);
+  try {
+    const res = await query(q, values);
 
-  return NextResponse.json({
-    login: true,
-    status: 200,
-    message: "Success",
-  });
+    return NextResponse.json({
+      login: true,
+      status: 200,
+      message: "Data Updated Successfully",
+    });
+  } catch (error) {
+    return NextResponse.json({
+      login: true,
+      status: 500,
+      message: "Something went wrong while updating data",
+    });
+  }
 }

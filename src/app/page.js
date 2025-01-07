@@ -2,10 +2,16 @@
 import { Card, FullNavbar } from "@/components/ui";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
   const [watchlistData, setWatchlistData] = useState([]);
-
+  const toastMessage = (message) =>
+    toast(message, {
+      theme: "dark",
+      autoClose: 2000,
+      position: "bottom-right",
+    });
   const searchShow = async (title) => {
     if (!title) {
       getData();
@@ -21,6 +27,7 @@ export default function Home() {
       const data = await res.json();
       console.log(data);
       setWatchlistData(data.data);
+      toastMessage(data.message);
     }
   };
   const getData = async () => {
@@ -32,14 +39,35 @@ export default function Home() {
     });
     const data = await res.json();
     setWatchlistData(data.data);
+    toastMessage(data.message);
   };
   useEffect(() => {
     getData();
   }, []);
 
+  const Logout = async () => {
+    const res = await fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    toastMessage(data.message);
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
       <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
+        <div>
+          <button onClick={Logout} className="text-slate-50/50">
+            Logout
+          </button>
+        </div>
         <div className="w-full pt-4 px-0">
           <FullNavbar search={searchShow} />
         </div>
@@ -76,6 +104,7 @@ export default function Home() {
             Load More
           </Link>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

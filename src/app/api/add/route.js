@@ -8,7 +8,7 @@ export async function POST(request = NextRequest) {
 
   if (!user.username) {
     return NextResponse.json({
-      message: "Unauthorized",
+      message: "Unauthorized Login Required for this action",
       status: 401,
       login: false,
     });
@@ -59,8 +59,15 @@ export async function POST(request = NextRequest) {
     const res = await query(q, values);
     // return NextResponse.json(res.rows[0], { status: 200 });
 
-    return NextResponse.json({ message: "Success", status: 200, login: true });
+    return NextResponse.json({
+      message: "Data Added Successfully",
+      status: 200,
+      login: true,
+    });
   } catch (err) {
-    return NextResponse.json({ message: "Unauthorized", status: 401 });
+    return NextResponse.json({
+      message: "Something went wrong while adding data",
+      status: 401,
+    });
   }
 }

@@ -42,7 +42,12 @@ const FullNavbar = ({ search, hidden = false }) => {
     }
   };
 
-  const toastMessage = (message) => toast(message, { theme: "dark" });
+  const toastMessage = (message) =>
+    toast(message, {
+      theme: "dark",
+      autoClose: 2000,
+      position: "bottom-right",
+    });
 
   useEffect(() => {
     setIsAddFormClose(true);

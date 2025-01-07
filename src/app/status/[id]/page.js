@@ -3,12 +3,19 @@ import { Card, FullNavbar } from "@/components/ui";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const StatusSingle = () => {
   const { id } = useParams();
   const urlData = id.split("%20").join(" ");
 
   const [watchlistData, setWatchlistData] = useState([]);
+  const toastMessage = (message) =>
+    toast(message, {
+      theme: "dark",
+      autoClose: 2000,
+      position: "bottom-right",
+    });
 
   const searchShow = async (title) => {
     if (!title) {
@@ -36,7 +43,8 @@ const StatusSingle = () => {
     });
     const data = await res.json();
 
-    setWatchlistData(data.data);
+    setWatchlistData(data.data || []);
+    toastMessage(data.message);
   };
   useEffect(() => {
     getData();
@@ -87,6 +95,7 @@ const StatusSingle = () => {
           </Link>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -7,21 +7,27 @@ export async function GET(request = NextRequest) {
 
   if (!user.username) {
     return NextResponse.json({
-      message: "Unauthorized",
+      message: "Unauthorized Login Required",
       status: 401,
       login: false,
     });
   }
 
   const q = "SELECT * FROM watchlist_items ORDER BY id DESC";
-  const res = await query(q);
-  // console.log(res.rows);
+  try {
+    const res = await query(q);
 
-  return NextResponse.json({
-    message: "Success",
-    status: 200,
-    data: res.rows,
-  });
+    return NextResponse.json({
+      message: "Data Fetched Successfully",
+      status: 200,
+      data: res.rows,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      message: "Something went wrong while fetching data",
+      status: 500,
+    });
+  }
 }
 
 export async function POST(request = NextRequest) {
@@ -30,7 +36,7 @@ export async function POST(request = NextRequest) {
 
   if (!user.username) {
     return NextResponse.json({
-      message: "Unauthorized",
+      message: "Unauthorized Login Required",
       status: 401,
       login: false,
     });
@@ -38,11 +44,18 @@ export async function POST(request = NextRequest) {
   const q =
     "SELECT * FROM watchlist_items WHERE title ILIKE $1 ORDER BY id DESC";
   const values = [`%${searchData.title}%`];
-  const res = await query(q, values);
+  try {
+    const res = await query(q, values);
 
-  return NextResponse.json({
-    status: 200,
-    message: "Success",
-    data: res.rows,
-  });
+    return NextResponse.json({
+      status: 200,
+      message: "Data Fetched Successfully",
+      data: res.rows,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      status: 500,
+      message: "Something went wrong while fetching data",
+    });
+  }
 }
