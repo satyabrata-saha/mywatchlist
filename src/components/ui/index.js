@@ -5,6 +5,8 @@ import FullNavbar from "./FullNavbar";
 import CategoryNavbar from "./CategoryNavbar";
 import SearchBar from "./SearchBar";
 import StatusNavbar from "./StatusNavbar";
+import Logout from "./Logout";
+import Footer from "./Footer";
 
 export {
   AddShow,
@@ -14,4 +16,6 @@ export {
   CategoryNavbar,
   SearchBar,
   StatusNavbar,
+  Logout,
+  Footer,
 };

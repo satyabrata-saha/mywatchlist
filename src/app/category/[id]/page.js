@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const CategorySingle = () => {
   const { id } = useParams();
-  const urlData = id.split("%20").join(" ");
+  const urlData = id.split("%20").join(" ").toUpperCase();
 
   const [watchlistData, setWatchlistData] = useState([]);
   const [message, setMessage] = useState("");

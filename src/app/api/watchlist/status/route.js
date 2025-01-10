@@ -19,6 +19,14 @@ export async function POST(request = NextRequest) {
   try {
     const res = await query(q, values);
 
+    if (res.rows.length === 0) {
+      return NextResponse.json({
+        status: 200,
+        message: "No Data Found",
+        data: [],
+      });
+    }
+
     return NextResponse.json({
       status: 200,
       message: "Data Fetched Successfully",

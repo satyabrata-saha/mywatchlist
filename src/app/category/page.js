@@ -1,5 +1,8 @@
 "use client";
-import { CategoryNavbar, FullNavbar } from "@/components/ui";
+import { FullNavbar } from "@/components/ui";
+import { category } from "@/lib/constant";
+import Image from "next/image";
+import Link from "next/link";
 
 const Category = () => {
   return (
@@ -8,12 +11,23 @@ const Category = () => {
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>
-        <div className="w-full h-full">
-          <CategoryNavbar
-            hidden={false}
-            className="text-xl font-bold dark:text-slate-200 px-8 py-4 m-2 rounded-lg"
-            gridClass="grid grid-cols-2 grid-rows-* gap-2 text-center"
-          />
+        <div className=" w-[90%] sm:max-w-3xl mx-auto h-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-rows-* gap-4 text-center tracking-wider">
+            {category.map((item) => (
+              <Link key={item.id} href={`/category/${item.name.toLowerCase()}`}>
+                <div className="text-xl font-bold dark:text-slate-200 rounded-md mb-2 hover:scale-[102%] transition-all duration-200 ease-in-out w-full max-w-[200px] h-[300px]">
+                  <Image
+                    src={item.bgImage}
+                    alt={item.name}
+                    width={200}
+                    height={200}
+                    className="rounded-md object-center w-full h-[90%]"
+                  />
+                  <div className="mt-2">{item.name}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

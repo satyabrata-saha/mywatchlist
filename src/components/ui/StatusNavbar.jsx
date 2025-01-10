@@ -1,7 +1,6 @@
 import { statusArray } from "@/lib/constant";
 import Link from "next/link";
 import React from "react";
-import Logout from "./Logout";
 
 const StatusNavbar = ({ hidden }) => {
   return (
@@ -9,7 +8,7 @@ const StatusNavbar = ({ hidden }) => {
       <div className="flex items-center justify-center flex-wrap h-fit w-full tracking-wider">
         <div className="flex gap-2 items-center justify-center flex-wrap max-w-2xl mx-auto">
           {statusArray.map((item) => (
-            <Link key={item.id} href={`/status/${item.name}`}>
+            <Link key={item.id} href={`/status/${item.name.toLowerCase()}`}>
               <div
                 className={`${item.bgcolor || "dark:bg-slate-700"} ${
                   item.bgcolorHover || "dark:hover:bg-slate-800"
@@ -19,7 +18,6 @@ const StatusNavbar = ({ hidden }) => {
               </div>
             </Link>
           ))}
-          <Logout hidden={hidden} />
         </div>
       </div>
     </div>

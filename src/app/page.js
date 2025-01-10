@@ -1,5 +1,5 @@
 "use client";
-import { Card, FullNavbar } from "@/components/ui";
+import { Card, Footer, FullNavbar } from "@/components/ui";
 import toastMessage from "@/lib/toastMessage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -83,6 +83,9 @@ export default function Home() {
           >
             Load More
           </Link>
+        </div>
+        <div className="w-full pt-4 px-0">
+          <Footer />
         </div>
       </div>
     </div>

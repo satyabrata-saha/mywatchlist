@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   AddShow,
   CategoryNavbar,
+  Logout,
   Navbar,
   SearchBar,
   StatusNavbar,
@@ -46,7 +47,7 @@ const FullNavbar = ({ search, hidden = false }) => {
   }, []);
 
   return (
-    <div className="w-full h-fit items-start">
+    <div className="w-full h-fit items-start justify-start">
       <Navbar isLogin={isLogin} toggleAddForm={toggleAddForm} />
       <hr className="my-2 opacity-10" />
       <CategoryNavbar hidden={hidden} />
@@ -55,6 +56,7 @@ const FullNavbar = ({ search, hidden = false }) => {
       <hr className="my-2 opacity-0" hidden={!isLogin} />
       <StatusNavbar hidden={hidden} />
       <hr className="mt-2 opacity-10" hidden={hidden} />
+      <Logout hidden={!isLogin} />
 
       <AddShow isAddFormClose={isAddFormClose} AddFormClose={AddFormClose} />
     </div>

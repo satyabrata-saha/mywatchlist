@@ -2,8 +2,7 @@ const category = [
   {
     id: 1,
     name: "Anime",
-    bgImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiuxE7z7dj2nEuRBvRBYekdz1NDVTZmg8ciQ&s",
+    bgImage: "https://cdn.myanimelist.net/images/anime/1522/128039.jpg",
   },
   {
     id: 2,
@@ -12,39 +11,45 @@ const category = [
   },
   {
     id: 3,
-    name: "Movie",
-    bgImage:
-      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+    name: "Light Novel",
+    bgImage: "https://cdn.myanimelist.net/images/manga/2/257957.jpg",
   },
   {
     id: 4,
-    name: "TV Show",
-    bgImage:
-      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+    name: "Web Novel",
+    bgImage: "https://cdn.myanimelist.net/images/manga/3/248674.jpg",
   },
   {
     id: 5,
-    name: "OVA",
-    bgImage:
-      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+    name: "Movie",
+    bgImage: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
   },
   {
     id: 6,
-    name: "ONA",
-    bgImage:
-      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+    name: "TV Show",
+    bgImage: "https://cdn.myanimelist.net/images/anime/1614/90408.jpg",
   },
   {
     id: 7,
-    name: "Web Series",
-    bgImage:
-      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+    name: "OVA",
+    bgImage: "https://cdn.myanimelist.net/images/anime/1862/121020.jpg",
   },
   {
     id: 8,
+    name: "ONA",
+    bgImage: "https://cdn.myanimelist.net/images/anime/1015/138006.jpg",
+  },
+  {
+    id: 9,
+    name: "Web Series",
+    bgImage:
+      "https://m.media-amazon.com/images/M/MV5BM2FiMjQ0ZjAtYzc1OC00NzgzLWIyNmQtYmIwYjdhZWM5MmRiXkEyXkFqcGc@._V1_FMjpg_UX1080_.jpg",
+  },
+  {
+    id: 10,
     name: "Others",
     bgImage:
-      "https://cdn.oneesports.gg/cdn-data/2024/10/Anime_ReZero_Characters_Beatrice_Emilia_Subaru_Liliana.jpg",
+      "https://m.media-amazon.com/images/M/MV5BYTNmNTBlYzUtNTFiNS00YmY4LWJiMWYtZTlmNmY3ODFlMTUxXkEyXkFqcGc@._V1_FMjpg_UX1080_.jpg",
   },
 ];
 

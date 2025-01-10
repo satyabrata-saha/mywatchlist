@@ -8,6 +8,16 @@ import { useEffect, useState } from "react";
 const SinglePage = () => {
   const router = useRouter();
   const { id } = useParams();
+  const [tempData, setTempData] = useState({
+    title: "",
+    thumbnail: "",
+    category: "Anime",
+    genres: "",
+    startDate: "",
+    endDate: "",
+    status: "Watching",
+    rating: 0,
+  });
   const [data, setData] = useState({
     title: "",
     thumbnail: "",
@@ -25,7 +35,21 @@ const SinglePage = () => {
     e.preventDefault();
     setButtonDisabled(true);
     if (!data.title && !data.category && !data.genres && !data.status) {
+      setButtonDisabled(false);
       toastMessage("Please fill all the fields");
+      return;
+    }
+
+    if (
+      data.title === tempData.title &&
+      data.category === tempData.category &&
+      data.genres === tempData.genres &&
+      data.status === tempData.status &&
+      data.rating === tempData.rating &&
+      data.startDate === tempData.startDate &&
+      data.endDate === tempData.endDate
+    ) {
+      toastMessage("No changes is made");
       return;
     }
 
@@ -82,8 +106,18 @@ const SinglePage = () => {
       thumbnail: watchlistData.thumbnail,
       category: watchlistData.category,
       genres: watchlistData.genres,
-      startDate: watchlistData.startDate || "",
-      endDate: watchlistData.endDate || "",
+      startDate: watchlistData.start_date || "",
+      endDate: watchlistData.end_date || "",
+      status: watchlistData.status,
+      rating: watchlistData.rating,
+    });
+    setTempData({
+      title: watchlistData.title,
+      thumbnail: watchlistData.thumbnail,
+      category: watchlistData.category,
+      genres: watchlistData.genres,
+      startDate: watchlistData.start_date || "",
+      endDate: watchlistData.end_date || "",
       status: watchlistData.status,
       rating: watchlistData.rating,
     });
@@ -130,6 +164,7 @@ const SinglePage = () => {
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
               onChange={(e) => setData({ ...data, category: e.target.value })}
               required
+              value={data.category}
             >
               {category.map((item) => (
                 <option key={item.id} value={item.name}>
@@ -159,7 +194,7 @@ const SinglePage = () => {
               placeholder="End Date"
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
               onChange={(e) => setData({ ...data, endDate: e.target.value })}
-              value={data.endDate}
+              defaultValue={data.endDate}
               required={false}
             />
 

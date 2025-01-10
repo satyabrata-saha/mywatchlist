@@ -13,7 +13,7 @@ const CategoryNavbar = ({ hidden, className, gridClass }) => {
           } `}
         >
           {category.map((item) => (
-            <Link key={item.id} href={`/category/${item.name}`}>
+            <Link key={item.id} href={`/category/${item.name.toLowerCase()}`}>
               <div
                 className={`${
                   className ||
