@@ -56,7 +56,7 @@ const FullNavbar = ({ search, hidden = false }) => {
       <hr className="my-2 opacity-0" hidden={!isLogin} />
       <StatusNavbar hidden={hidden} />
       <hr className="mt-2 opacity-10" hidden={hidden} />
-      <Logout hidden={!isLogin} />
+      {/* <Logout hidden={!isLogin} /> */}
 
       <AddShow isAddFormClose={isAddFormClose} AddFormClose={AddFormClose} />
     </div>

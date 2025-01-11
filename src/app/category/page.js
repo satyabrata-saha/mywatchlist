@@ -14,7 +14,11 @@ const Category = () => {
         <div className=" w-[90%] sm:max-w-3xl mx-auto h-full">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-rows-* gap-4 text-center tracking-wider">
             {category.map((item) => (
-              <Link key={item.id} href={`/category/${item.name.toLowerCase()}`}>
+              <Link
+                key={item.id}
+                href={`/category/${item.name.toLowerCase()}`}
+                className="flex flex-col items-center w-full h-full"
+              >
                 <div className="text-xl font-bold dark:text-slate-200 rounded-md mb-2 hover:scale-[102%] transition-all duration-200 ease-in-out w-full max-w-[200px] h-[300px]">
                   <Image
                     src={item.bgImage}

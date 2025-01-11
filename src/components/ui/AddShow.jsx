@@ -17,13 +17,7 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    if (
-      !data.title &&
-      !data.thumbnail &&
-      !data.category &&
-      !data.genres &&
-      !data.status
-    ) {
+    if (!data.title && !data.category && !data.genres && !data.status) {
       alert("Please fill all the fields");
       return;
     }

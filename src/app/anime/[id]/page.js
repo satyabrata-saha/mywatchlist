@@ -4,6 +4,7 @@ import { category, statusArray } from "@/lib/constant";
 import toastMessage from "@/lib/toastMessage";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { MdDeleteForever } from "react-icons/md";
 
 const SinglePage = () => {
   const router = useRouter();
@@ -125,6 +126,19 @@ const SinglePage = () => {
     setButtonDisabled(false);
   };
 
+  const handleDelete = async () => {
+    const res = await fetch("/api/delete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+    const data = await res.json();
+    toastMessage(data.message);
+    router.push("/");
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -133,13 +147,30 @@ const SinglePage = () => {
     if (message.length > 0) toastMessage(message);
   }, [message]);
 
+  useEffect(() => {
+    if (
+      data.title == tempData.title &&
+      data.thumbnail == tempData.thumbnail &&
+      data.category == tempData.category &&
+      data.genres == tempData.genres &&
+      data.status == tempData.status &&
+      data.rating == tempData.rating &&
+      data.startDate == tempData.startDate &&
+      data.endDate == tempData.endDate
+    ) {
+      setButtonDisabled(true);
+    } else {
+      setButtonDisabled(false);
+    }
+  }, [data, tempData]);
+
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
       <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>
-        <div className="flex items-center justify-center flex-wrap h-fit w-full">
+        <div className="flex flex-col items-center justify-center flex-wrap h-fit w-full">
           <form
             className="z-10 flex flex-col items-center justify-center gap-4 w-full sm:w-4/5 md:1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
             onSubmit={handleClick}
@@ -226,10 +257,18 @@ const SinglePage = () => {
             <button
               type="submit"
               disabled={buttonDisabled}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-blue-700/50"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-blue-700/50 z-10 transition-all duration-200 ease-in-out"
             >
-              Add Show
+              Updated Show
             </button>
+            <div className="w-full flex justify-end mt-[-3.4rem] z-0">
+              <abbr title="Delete">
+                <MdDeleteForever
+                  onClick={handleDelete}
+                  className="text-4xl cursor-pointer text-red-500 hover:text-red-600 transition-all duration-200 ease-in-out"
+                />
+              </abbr>
+            </div>
           </form>
         </div>
       </div>

@@ -17,7 +17,7 @@ const Card = ({
     <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[101%] transition-all duration-300 ease-in-out">
       <div className="w-full h-full flex flex-col justify-between">
         <Link href={`/anime/${id}`} className="w-full h-full">
-          <div className="w-full h-[275px] flex items-center justify-center">
+          <div className="w-full h-[300px] sm:h-[275px] flex items-center justify-center">
             <Image
               src={thumbnail || "/placeholder.png"}
               alt={title}

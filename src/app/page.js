@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [watchlistData, setWatchlistData] = useState([]);
   const [message, setMessage] = useState("");
+  const [total_show, setTotal_show] = useState(0);
 
   const searchShow = async (title) => {
     if (!title) {
@@ -36,6 +37,7 @@ export default function Home() {
     const data = await res.json();
     setWatchlistData(data.data);
     setMessage(data.message);
+    setTotal_show(data.total_show);
   };
   useEffect(() => {
     getData();
@@ -50,6 +52,11 @@ export default function Home() {
       <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
           <FullNavbar search={searchShow} />
+        </div>
+        <div className="w-full flex items-center justify-center pt-2">
+          <p className="text-slate-50/50 font-semibold tracking-wider">
+            Total Shows: {total_show}
+          </p>
         </div>
         <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-4 mt-4">
           {watchlistData.length > 0 ? (
