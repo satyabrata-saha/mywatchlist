@@ -8,7 +8,7 @@ export async function middleware(request = NextRequest) {
   const user = await verifyAuth(request);
   // console.log(user.username);
 
-  const verifiedToken = user.username;
+  const verifiedToken = user?.username;
 
   // console.log(verifiedToken);
 

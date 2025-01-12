@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { SignJWT, jwtVerify } from "jose";
+import jwt from "jsonwebtoken";
 
 export async function verifyAuth(req = NextRequest) {
   const token = req.cookies.get("user")?.value || "";
@@ -11,12 +11,8 @@ export async function verifyAuth(req = NextRequest) {
     });
 
   try {
-    const verified = await jwtVerify(
-      token,
-      new TextEncoder().encode(process.env.TOKON_SECRET)
-    );
-
-    return verified.payload;
+    const decode = jwt.decode(token);
+    return { username: decode.username || "" };
   } catch (err) {
     return NextResponse.json({
       message: "Your token has expired or is invalid",
