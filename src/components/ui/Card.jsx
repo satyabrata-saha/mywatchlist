@@ -45,22 +45,23 @@ const Card = ({
 
             <span className="flex flex-wrap gap-1 mt-1">
               {genres.split(", ").map((genre, index) => (
-                <span
+                <Link
                   key={index}
-                  className="bg-slate-100/10 px-2 py-1 rounded-lg"
+                  href={`/genres/${genre.toLowerCase()}`}
+                  className="bg-slate-100/10 px-2 py-1 rounded-lg hover:bg-slate-100/5 transition-all duration-200 ease-in-out"
                 >
-                  {genre}{" "}
-                </span>
+                  <span>{genre} </span>
+                </Link>
               ))}
             </span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Start Date: </span>
-            <span>{start_date}</span>
+            <span>{start_date?.split("T")[0]}</span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">End Date: </span>
-            <span>{end_date}</span>
+            <span>{end_date?.split("T")[0]}</span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Status: </span>

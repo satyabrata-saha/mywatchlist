@@ -72,8 +72,8 @@ const Login = () => {
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>
-        <div className="flex flex-col justify-center items-center h-[60vh] tracking-wider">
-          <div className="flex flex-col items-center justify-center gap-4 text-center bg-slate-900 rounded-md shadow-lg p-8 w-72 md:w-80">
+        <div className="flex flex-col justify-center items-center h-[70vh] tracking-wider">
+          <div className="flex flex-col items-center justify-center gap-4 text-center bg-slate-900 rounded-md shadow-lg p-8 w-80">
             <form
               onSubmit={handleSubmit}
               method="post"
