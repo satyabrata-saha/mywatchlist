@@ -9,7 +9,7 @@ export async function POST(request = NextRequest) {
 
   if (!user.username) {
     const q =
-      "SELECT * FROM watchlist_items WHERE genres ILIKE $1 ORDER BY id DESC LIMIT 10";
+      "SELECT * FROM watchlist_items WHERE genres ILIKE $1 ORDER BY id DESC LIMIT 25";
     try {
       const res = await query(q, values);
 
@@ -23,7 +23,7 @@ export async function POST(request = NextRequest) {
 
       return NextResponse.json({
         status: 200,
-        message: "You are not logged in that's why only last 10 data fetched",
+        message: "You are not logged in that's why only last 25 data fetched",
         data: res.rows,
       });
     } catch (error) {
