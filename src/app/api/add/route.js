@@ -15,6 +15,7 @@ export async function POST(request = NextRequest) {
   }
 
   const fromFrontendData = await request.json();
+
   const {
     title,
     thumbnail,
@@ -24,6 +25,8 @@ export async function POST(request = NextRequest) {
     endDate,
     status,
     rating,
+    alternativeTitle,
+    link,
   } = fromFrontendData.data;
 
   const token = request.cookies.get("user")?.value || "";
@@ -50,7 +53,7 @@ export async function POST(request = NextRequest) {
       genres,
       startDate || null,
       endDate || null,
-      status,
+      status || null,
       rating || 0,
     ];
 

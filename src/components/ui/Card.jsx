@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { FaLink } from "react-icons/fa";
 
 const Card = ({
   id,
@@ -12,9 +13,10 @@ const Card = ({
   thumbnail,
   status,
   rating,
+  link,
 }) => {
   return (
-    <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[101%] transition-all duration-300 ease-in-out">
+    <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[100.5%] transition-all duration-300 ease-in-out">
       <div className="w-full h-full flex flex-col justify-between">
         <Link href={`/anime/${id}`} className="w-full h-full">
           <div className="w-full h-[300px] sm:h-[275px] flex items-center justify-center">
@@ -25,7 +27,7 @@ const Card = ({
               blurDataURL={thumbnail || "/placeholder.png"}
               width={150}
               height={150}
-              className="rounded-lg object-center w-full h-full hover:scale-[102%] transition-all duration-300 ease-in-out"
+              className="rounded-lg object-center w-full h-full hover:scale-[101%] transition-all duration-300 ease-in-out"
             />
           </div>
         </Link>
@@ -72,6 +74,18 @@ const Card = ({
             <span>{rating}</span>
             <span className="text-slate-100/75"> /10</span>
           </p>
+          {link && (
+            <p className="text-xs text-slate-100/50">
+              <Link
+                href={link}
+                className="text-blue-400 hover:text-blue-500 transition-all duration-200 ease-in-out"
+              >
+                <span className="flex gap-1">
+                  learn more <FaLink size={10} className="mt-[0.21rem]" />
+                </span>
+              </Link>
+            </p>
+          )}
         </div>
       </div>
     </div>

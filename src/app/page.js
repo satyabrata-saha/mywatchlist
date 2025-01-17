@@ -72,6 +72,7 @@ export default function Home() {
                   end_date={item.end_date}
                   status={item.status}
                   rating={item.rating}
+                  link={item.link}
                 />
               </div>
             ))

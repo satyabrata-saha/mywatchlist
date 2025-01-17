@@ -18,6 +18,8 @@ const SinglePage = () => {
     endDate: "",
     status: "Watching",
     rating: 0,
+    alternativeTitle: "",
+    link: "",
   });
   const [data, setData] = useState({
     title: "",
@@ -28,6 +30,8 @@ const SinglePage = () => {
     endDate: "",
     status: "Watching",
     rating: 0,
+    alternativeTitle: "",
+    link: "",
   });
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [message, setMessage] = useState("");
@@ -48,7 +52,10 @@ const SinglePage = () => {
       data.status === tempData.status &&
       data.rating === tempData.rating &&
       data.startDate === tempData.startDate &&
-      data.endDate === tempData.endDate
+      data.endDate === tempData.endDate &&
+      data.thumbnail === tempData.thumbnail &&
+      data.link === tempData.link &&
+      data.alternativeTitle === tempData.alternativeTitle
     ) {
       toastMessage("No changes is made");
       return;
@@ -107,20 +114,24 @@ const SinglePage = () => {
       thumbnail: watchlistData.thumbnail,
       category: watchlistData.category,
       genres: watchlistData.genres,
-      startDate: watchlistData.start_date || "",
-      endDate: watchlistData.end_date || "",
+      startDate: watchlistData.start_date?.split("T")[0] || "",
+      endDate: watchlistData.end_date?.split("T")[0] || "",
       status: watchlistData.status,
       rating: watchlistData.rating,
+      alternativeTitle: watchlistData.alternative_title,
+      link: watchlistData.link,
     });
     setTempData({
       title: watchlistData.title,
-      thumbnail: watchlistData.thumbnail,
+      thumbnail: watchlistData.thumbnail || "",
       category: watchlistData.category,
       genres: watchlistData.genres,
       startDate: watchlistData.start_date || "",
       endDate: watchlistData.end_date || "",
       status: watchlistData.status,
       rating: watchlistData.rating,
+      alternativeTitle: watchlistData.alternative_title || "",
+      link: watchlistData.link || "",
     });
 
     setButtonDisabled(false);
@@ -165,12 +176,12 @@ const SinglePage = () => {
   }, [data, tempData]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
+    <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4 z-0">
       <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>
-        <div className="flex flex-col items-center justify-center flex-wrap h-fit w-full">
+        <div className="flex flex-col items-center justify-center flex-wrap h-fit w-full mb-8">
           <form
             className="z-10 flex flex-col items-center justify-center gap-4 w-full sm:w-4/5 md:1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
             onSubmit={handleClick}
@@ -190,12 +201,21 @@ const SinglePage = () => {
               onChange={(e) => setData({ ...data, thumbnail: e.target.value })}
               value={data.thumbnail}
             />
+            <input
+              type="text"
+              placeholder="Show Alternate Title (Optional)"
+              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
+              onChange={(e) =>
+                setData({ ...data, alternativeTitle: e.target.value })
+              }
+              value={data.alternativeTitle}
+            />
 
             <select
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
               onChange={(e) => setData({ ...data, category: e.target.value })}
               required
-              value={data.category}
+              defaultValue={data.category}
             >
               {category.map((item) => (
                 <option key={item.id} value={item.name}>
@@ -240,6 +260,13 @@ const SinglePage = () => {
                 </option>
               ))}
             </select>
+            <input
+              type="url"
+              placeholder="Source URL"
+              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
+              onChange={(e) => setData({ ...data, link: e.target.value })}
+              value={data.link}
+            />
 
             <input
               type="range"
@@ -249,7 +276,7 @@ const SinglePage = () => {
               placeholder="Rating"
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none"
               onChange={(e) => setData({ ...data, rating: e.target.value })}
-              value={data.rating}
+              value={data.rating || 0}
               required={false}
             />
             <p className="w-full">Rating: {data.rating}</p>

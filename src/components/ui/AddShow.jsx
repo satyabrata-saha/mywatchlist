@@ -6,14 +6,17 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
   const [data, setData] = useState({
     title: "",
     thumbnail: "",
+    alternativeTitle: "",
     category: "Anime",
     genres: "",
     startDate: "",
     endDate: "",
     status: "Watching",
+    link: "",
     rating: 0,
   });
-  const [message, setMessage] = useState("");
+
+  // console.log(data);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -33,7 +36,7 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
         }),
       });
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
 
       if (result.login === false) {
         toastMessage("Please login to add show");
@@ -42,11 +45,10 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
 
       if (result.login === true) {
         toastMessage("Show added successfully");
-        setMessage("Show added successfully");
         AddFormClose(true);
       } else {
-        toastMessage("Something went wrong");
-        alert("Something went wrong");
+        // toastMessage("Something went wrong");
+        toastMessage(result.message);
       }
     } catch (error) {
       console.error(error);
@@ -60,16 +62,16 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
   return (
     <div
       hidden={isAddFormClose}
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-600/50 w-screen h-screen backdrop-blur-sm z-10 tracking-wider overflow-hidden p-8"
+      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-600/50 w-screen h-screen backdrop-blur-sm z-20 tracking-wider overflow-x-hidden p-8"
     >
-      <div className="flex justify-center items-center h-full w-full ">
+      <div className="flex justify-center items-center h-fit w-full">
         <div
           onClick={handleOutSideClick}
           hidden={isAddFormClose}
-          className="absolute top-0 left-0 w-screen h-screen bg-orange-500 opacity-50 z-0 cursor-pointer"
+          className="absolute top-0 left-0 w-screen h-screen  opacity-50 z-0 cursor-pointer"
         />
         <form
-          className="z-10 flex flex-col items-center justify-center gap-4 w-full sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
+          className="z-10 flex flex-col items-center justify-center gap-4 w-full h-fit sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
           onSubmit={handleClick}
         >
           <input
@@ -87,6 +89,15 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
             onChange={(e) => setData({ ...data, thumbnail: e.target.value })}
             value={data.thumbnail}
             required
+          />
+          <input
+            type="text"
+            placeholder="Show Alternate Title (Optional)"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
+            onChange={(e) =>
+              setData({ ...data, alternativeTitle: e.target.value })
+            }
+            value={data.alternativeTitle}
           />
 
           <select
@@ -137,6 +148,14 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
               </option>
             ))}
           </select>
+
+          <input
+            type="url"
+            placeholder="Source URL"
+            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
+            onChange={(e) => setData({ ...data, link: e.target.value })}
+            value={data.link}
+          />
 
           <input
             type="range"
