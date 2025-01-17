@@ -4,15 +4,15 @@ import { verifyAuth } from "@/lib/auth";
 
 export async function POST(request = NextRequest) {
   const statusData = await request.json();
-  const user = await verifyAuth(request);
+  // const user = await verifyAuth(request);
 
-  if (!user.username) {
-    return NextResponse.json({
-      message: "Unauthorized Login Required",
-      status: 401,
-      login: false,
-    });
-  }
+  // if (!user.username) {
+  //   return NextResponse.json({
+  //     message: "Unauthorized Login Required",
+  //     status: 401,
+  //     login: false,
+  //   });
+  // }
   const q =
     "SELECT * FROM watchlist_items WHERE status ILIKE $1 ORDER BY id DESC";
   const values = [`%${statusData.status}%`];

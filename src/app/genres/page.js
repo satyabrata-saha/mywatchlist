@@ -10,7 +10,11 @@ const Genres = () => {
     router.push("/");
   }, []);
 
-  return <div>Genres</div>;
+  return (
+    <div className="flex flex-col items-center justify-center h-screen text-center text-xl">
+      Genres
+    </div>
+  );
 };
 
 export default Genres;

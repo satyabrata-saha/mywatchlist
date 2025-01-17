@@ -108,28 +108,29 @@ const SinglePage = () => {
 
     const watchlistData = data.data[0];
     setMessage(data.message);
+    // console.log(watchlistData);
 
     setData({
-      title: watchlistData.title,
-      thumbnail: watchlistData.thumbnail,
-      category: watchlistData.category,
-      genres: watchlistData.genres,
-      startDate: watchlistData.start_date?.split("T")[0] || "",
-      endDate: watchlistData.end_date?.split("T")[0] || "",
-      status: watchlistData.status,
-      rating: watchlistData.rating,
-      alternativeTitle: watchlistData.alternative_title,
-      link: watchlistData.link,
-    });
-    setTempData({
-      title: watchlistData.title,
+      title: watchlistData.title || "",
       thumbnail: watchlistData.thumbnail || "",
-      category: watchlistData.category,
-      genres: watchlistData.genres,
+      category: watchlistData.category || "Anime",
+      genres: watchlistData.genres || "",
       startDate: watchlistData.start_date || "",
       endDate: watchlistData.end_date || "",
       status: watchlistData.status,
-      rating: watchlistData.rating,
+      rating: watchlistData.rating || 0,
+      alternativeTitle: watchlistData.alternative_title || "",
+      link: watchlistData.link || "",
+    });
+    setTempData({
+      title: watchlistData.title || "",
+      thumbnail: watchlistData.thumbnail || "",
+      category: watchlistData.category || "Anime",
+      genres: watchlistData.genres || "",
+      startDate: watchlistData.start_date || "",
+      endDate: watchlistData.end_date || "",
+      status: watchlistData.status || "Watching",
+      rating: watchlistData.rating || 0,
       alternativeTitle: watchlistData.alternative_title || "",
       link: watchlistData.link || "",
     });
@@ -167,7 +168,9 @@ const SinglePage = () => {
       data.status == tempData.status &&
       data.rating == tempData.rating &&
       data.startDate == tempData.startDate &&
-      data.endDate == tempData.endDate
+      data.endDate == tempData.endDate &&
+      data.alternativeTitle == tempData.alternativeTitle &&
+      data.link == tempData.link
     ) {
       setButtonDisabled(true);
     } else {
@@ -215,7 +218,7 @@ const SinglePage = () => {
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
               onChange={(e) => setData({ ...data, category: e.target.value })}
               required
-              defaultValue={data.category}
+              value={data.category}
             >
               {category.map((item) => (
                 <option key={item.id} value={item.name}>
@@ -237,7 +240,7 @@ const SinglePage = () => {
               placeholder="Start Date"
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm "
               onChange={(e) => setData({ ...data, startDate: e.target.value })}
-              value={data.startDate}
+              value={data.startDate?.split("T")[0]}
               required={false}
             />
             <input
@@ -245,13 +248,14 @@ const SinglePage = () => {
               placeholder="End Date"
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
               onChange={(e) => setData({ ...data, endDate: e.target.value })}
-              defaultValue={data.endDate}
+              defaultValue={data.endDate?.split("T")[0]}
               required={false}
             />
 
             <select
               className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
               onChange={(e) => setData({ ...data, status: e.target.value })}
+              value={data.status}
               required
             >
               {statusArray.map((item) => (

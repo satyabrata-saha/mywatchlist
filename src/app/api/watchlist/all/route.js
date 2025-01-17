@@ -3,15 +3,15 @@ import { query } from "@/lib/db";
 import { verifyAuth } from "@/lib/auth";
 
 export async function GET(request = NextRequest) {
-  const user = await verifyAuth(request);
+  // const user = await verifyAuth(request);
 
-  if (!user.username) {
-    return NextResponse.json({
-      message: "Unauthorized Login Required",
-      status: 401,
-      login: false,
-    });
-  }
+  // if (!user.username) {
+  //   return NextResponse.json({
+  //     message: "Unauthorized Login Required",
+  //     status: 401,
+  //     login: false,
+  //   });
+  // }
 
   const q = "SELECT * FROM watchlist_items ORDER BY id DESC";
   try {
@@ -32,15 +32,15 @@ export async function GET(request = NextRequest) {
 
 export async function POST(request = NextRequest) {
   const searchData = await request.json();
-  const user = await verifyAuth(request);
+  // const user = await verifyAuth(request);
 
-  if (!user.username) {
-    return NextResponse.json({
-      message: "Unauthorized Login Required",
-      status: 401,
-      login: false,
-    });
-  }
+  // if (!user.username) {
+  //   return NextResponse.json({
+  //     message: "Unauthorized Login Required",
+  //     status: 401,
+  //     login: false,
+  //   });
+  // }
   const q =
     "SELECT * FROM watchlist_items WHERE title ILIKE $1 ORDER BY id DESC";
   const values = [`%${searchData.title}%`];

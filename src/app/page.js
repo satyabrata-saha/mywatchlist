@@ -38,6 +38,7 @@ export default function Home() {
     setWatchlistData(data.data);
     setMessage(data.message);
     setTotal_show(data.total_show);
+    console.log(data.data);
   };
   useEffect(() => {
     getData();

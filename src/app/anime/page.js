@@ -1,19 +1,18 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-const Status = () => {
+const Anime = () => {
   const router = useRouter();
 
   useEffect(() => {
     router.push("/");
   }, []);
-
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center text-xl">
-      Status
+      Anime
     </div>
   );
 };
 
-export default Status;
+export default Anime;

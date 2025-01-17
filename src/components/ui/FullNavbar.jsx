@@ -52,8 +52,8 @@ const FullNavbar = ({ search, hidden = false }) => {
       <hr className="my-2 opacity-10" />
       <CategoryNavbar hidden={hidden} />
       <hr className="my-2 opacity-0" />
-      <SearchBar isLogin={isLogin} search={search} hidden={hidden} />
-      <hr className="my-2 opacity-0" hidden={!isLogin} />
+      <SearchBar isLogin={true} search={search} hidden={hidden} />
+      <hr className="my-2 opacity-0" />
       <StatusNavbar hidden={hidden} />
       <hr className="mt-2 opacity-10" hidden={hidden} />
       {/* <Logout hidden={!isLogin} /> */}
