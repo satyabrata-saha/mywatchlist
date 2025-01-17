@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-50 dark:bg-gray-900 dark:text-gray-50 tracking-wide`}
       >
         {children}
-        <ToastContainer />
+        <ToastContainer className="m-2 sm:m-0" />
       </body>
     </html>
   );

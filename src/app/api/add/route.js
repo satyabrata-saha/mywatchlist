@@ -42,8 +42,8 @@ export async function POST(request = NextRequest) {
     // console.log(username);
 
     const q = `
-      INSERT INTO watchlist_items (title, thumbnail, category, genres, start_date, end_date, status, rating)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      INSERT INTO watchlist_items (title, thumbnail, category, genres, start_date, end_date, status, rating, alternative_title, link)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
       RETURNING *;
     `;
     const values = [
@@ -55,6 +55,8 @@ export async function POST(request = NextRequest) {
       endDate || null,
       status || null,
       rating || 0,
+      alternativeTitle || null,
+      link || null,
     ];
 
     // console.log(values);

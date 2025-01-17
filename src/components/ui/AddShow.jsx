@@ -45,7 +45,11 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
 
       if (result.login === true) {
         toastMessage("Show added successfully");
+
         AddFormClose(true);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       } else {
         // toastMessage("Something went wrong");
         toastMessage(result.message);

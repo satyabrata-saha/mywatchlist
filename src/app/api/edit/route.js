@@ -15,7 +15,7 @@ export async function POST(request = NextRequest) {
     });
   }
   const q =
-    "UPDATE watchlist_items SET (title, category, genres, start_date, end_date, thumbnail, status, rating) = ($1, $2, $3, $4, $5, $6, $7, $8) WHERE id=$9 RETURNING *";
+    "UPDATE watchlist_items SET (title, category, genres, start_date, end_date, thumbnail, status, rating, alternative_title, link) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) WHERE id=$11 RETURNING *";
 
   const values = [
     data.title,
@@ -26,6 +26,8 @@ export async function POST(request = NextRequest) {
     data.thumbnail || null,
     data.status,
     data.rating,
+    data.alternativeTitle || null,
+    data.link || null,
     id,
   ];
   // console.log(values);

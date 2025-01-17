@@ -16,6 +16,23 @@ const Colors = () => {
           <div className="dark:bg-slate-700 h-20 w-20 rounded-sm"></div>
           <div className="dark:hover:bg-slate-800 h-20 w-20 rounded-sm"></div>
         </div>
+        <div className="grid grid-cols-3 gap-2 text-center">
+          <div className="text-blue-500/50 h-20 w-20 rounded-sm">
+            text-blue-500/50
+          </div>
+          <div className="text-green-500/50 h-20 w-20 rounded-sm">
+            text-green-500/50
+          </div>
+          <div className="text-yellow-500/50 h-20 w-20 rounded-sm">
+            text-yellow-500/50
+          </div>
+          <div className="text-red-500/50 h-20 w-20 rounded-sm">
+            text-red-500
+          </div>
+          <div className="text-slate-500/50 h-20 w-20 rounded-sm">
+            text-slate-500/50
+          </div>
+        </div>
       </div>
     </div>
   );
