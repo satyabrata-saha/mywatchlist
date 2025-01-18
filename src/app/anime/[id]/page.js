@@ -180,7 +180,7 @@ const SinglePage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4 z-0">
-      <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
+      <div className="w-full min-h-screen flex flex-col justify-between sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>

@@ -5,8 +5,8 @@ import Logout from "./Logout";
 
 const Navbar = ({ isLogin, toggleAddForm }) => {
   return (
-    <nav className="flex justify-center items-start w-full h-fit overflow-hidden p-0">
-      <div className="flex gap-4 items-center justify-between w-full">
+    <nav className="flex flex-wrap justify-center items-center w-full h-fit overflow-hidden p-0">
+      <div className="flex flex-wrap gap-4 items-center justify-center w-full sm:justify-between">
         <div>
           <Link href="/">
             <h1 className="text-xl font-semibold start-0 dark:text-orange-500 dark:hover:text-orange-600 transition-all duration-200 ease-in-out">

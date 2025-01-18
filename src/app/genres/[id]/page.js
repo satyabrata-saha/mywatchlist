@@ -70,14 +70,14 @@ const GenresSingle = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
-      <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
+      <div className="w-full min-h-screen flex flex-col justify-between sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
           <FullNavbar search={searchShow} hidden={true} />
         </div>
         <div>
           <h1 className="text-3xl font-bold text-slate-50 mb-4">{urlData}</h1>
         </div>
-        <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-4 mt-4">
+        <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-4 mt-4 h-fit">
           {watchlistData.length > 0 ? (
             watchlistData.map((item) => (
               <div key={item.id}>

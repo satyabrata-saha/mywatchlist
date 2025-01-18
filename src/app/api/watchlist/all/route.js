@@ -14,13 +14,17 @@ export async function GET(request = NextRequest) {
   // }
 
   const q = "SELECT * FROM watchlist_items ORDER BY id DESC";
+  const q2 = "SELECT total_show FROM total_show WHERE id = 1";
+
   try {
     const res = await query(q);
+    const res2 = await query(q2);
 
     return NextResponse.json({
       message: "Data Fetched Successfully",
       status: 200,
       data: res.rows,
+      total_show: res2.rows[0].total_show,
     });
   } catch (error) {
     return NextResponse.json({
