@@ -24,13 +24,13 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
               {l.name}
             </Link>
           ))}
-          <Link
+          {/* <Link
             href="/login"
             hidden={isLogin}
             className=" py-1 px-3.5 text-sm text-slate-50 focus:outline-none rounded-full border border-orange-500 hover:bg-orange-500 transition-all duration-150 ease-in-out"
           >
             Login
-          </Link>
+          </Link> */}
           <button
             onClick={toggleAddForm}
             hidden={!isLogin}

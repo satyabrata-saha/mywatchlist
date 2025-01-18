@@ -15,6 +15,7 @@ const Card = ({
   rating,
   alternativeTitle,
   link,
+  isLogin = false,
 }) => {
   const [colorStatus, setColorStatus] = useState("text-slate-100/50");
 
@@ -35,7 +36,7 @@ const Card = ({
   return (
     <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[100.5%] transition-all duration-300 ease-in-out">
       <div className="w-full h-full flex flex-col justify-between">
-        <Link href={`/anime/${id}`} className="w-full h-full">
+        <Link href={link} className="w-full h-full" target="_blank">
           <div className="w-full h-[300px] sm:h-[275px] flex items-center justify-center">
             <Image
               src={thumbnail || "/placeholder.png"}
@@ -49,7 +50,7 @@ const Card = ({
           </div>
         </Link>
         <div className="flex flex-col items-baseline justify-center gap-2 w-full h-full">
-          <Link href={`/anime/${id}`} className="w-full h-full">
+          <Link href={link} className="w-full h-full">
             <h5 className="text-sm text-blue-200/75 font-semibold mt-4 pb-2 text-balance hover:text-blue-300 transition-all duration-200 ease-in-out">
               {title}
             </h5>
@@ -100,15 +101,15 @@ const Card = ({
             <span>{rating}</span>
             <span className="text-slate-100/75"> /10</span>
           </p>
-          {link && (
+          {isLogin && (
             <p className="text-xs text-slate-100/50">
               <Link
-                href={link}
+                href={`/anime/${id}`}
                 className="text-blue-400 hover:text-blue-500 transition-all duration-200 ease-in-out"
                 target="_blank"
               >
                 <span className="flex gap-1">
-                  learn more <FaLink size={10} className="mt-[0.21rem]" />
+                  edit <FaLink size={10} className="mt-[0.21rem]" />
                 </span>
               </Link>
             </p>

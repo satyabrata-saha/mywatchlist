@@ -17,7 +17,11 @@ const Logout = () => {
   useEffect(() => {
     handleLogout();
   }, []);
-  return <div>Logout</div>;
+  return (
+    <div className="flex flex-col items-center justify-center h-screen text-center text-xl">
+      Logout
+    </div>
+  );
 };
 
 export default Logout;

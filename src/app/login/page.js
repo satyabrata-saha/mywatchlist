@@ -1,5 +1,5 @@
 "use client";
-import { FullNavbar } from "@/components/ui";
+import { Footer, FullNavbar } from "@/components/ui";
 import toastMessage from "@/lib/toastMessage";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -115,6 +115,9 @@ const Login = () => {
               </Link>
             </div>
           </div>
+        </div>
+        <div className="w-full pt-4 px-0">
+          <Footer />
         </div>
       </div>
     </div>

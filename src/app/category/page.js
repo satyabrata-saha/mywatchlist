@@ -1,5 +1,5 @@
 "use client";
-import { FullNavbar } from "@/components/ui";
+import { Footer, FullNavbar } from "@/components/ui";
 import { category } from "@/lib/constant";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,11 +7,11 @@ import Link from "next/link";
 const Category = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
-      <div className="w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
+      <div className="w-full h-screen flex flex-col justify-between sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>
-        <div className=" w-[90%] sm:max-w-3xl mx-auto h-full">
+        <div className=" w-[90%] sm:max-w-3xl mx-auto h-full mb-2">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-rows-* gap-4 text-center tracking-wider">
             {category.map((item) => (
               <Link
@@ -32,6 +32,9 @@ const Category = () => {
               </Link>
             ))}
           </div>
+        </div>
+        <div className="w-full pt-4 px-0">
+          <Footer />
         </div>
       </div>
     </div>

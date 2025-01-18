@@ -1,5 +1,5 @@
 "use client";
-import { Card, FullNavbar } from "@/components/ui";
+import { Card, Footer, FullNavbar } from "@/components/ui";
 import toastMessage from "@/lib/toastMessage";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -11,7 +11,25 @@ const CategorySingle = () => {
 
   const [watchlistData, setWatchlistData] = useState([]);
   const [message, setMessage] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
 
+  const getCookieSetLoginState = async () => {
+    const res = await fetch("/api/auth/authloging", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+    // console.log(data);
+
+    if (data.login) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  };
   const searchShow = async (title) => {
     if (!title) {
       getData();
@@ -42,6 +60,7 @@ const CategorySingle = () => {
   };
   useEffect(() => {
     getData();
+    getCookieSetLoginState();
   }, []);
 
   useEffect(() => {
@@ -71,6 +90,9 @@ const CategorySingle = () => {
                   end_date={item.end_date}
                   status={item.status}
                   rating={item.rating}
+                  alternativeTitle={item.alternative_title}
+                  link={item.link}
+                  isLogin={isLogin}
                 />
               </div>
             ))
@@ -91,6 +113,9 @@ const CategorySingle = () => {
           >
             Load All
           </Link>
+        </div>
+        <div className="w-full pt-4 px-0">
+          <Footer />
         </div>
       </div>
     </div>

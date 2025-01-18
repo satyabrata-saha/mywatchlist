@@ -1,5 +1,5 @@
 "use client";
-import { FullNavbar } from "@/components/ui";
+import { Footer, FullNavbar } from "@/components/ui";
 import { category, statusArray } from "@/lib/constant";
 import toastMessage from "@/lib/toastMessage";
 import { useParams, useRouter } from "next/navigation";
@@ -301,6 +301,9 @@ const SinglePage = () => {
               </abbr>
             </div>
           </form>
+        </div>
+        <div className="w-full pt-4 px-0">
+          <Footer />
         </div>
       </div>
     </div>

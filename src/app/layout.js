@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="dark">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-50 dark:bg-gray-900 dark:text-gray-50 tracking-wide`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-50 dark:bg-gray-900 dark:text-gray-50 tracking-wide min-h-screen`}
       >
         {children}
         <ToastContainer className="m-2 sm:m-0" />
