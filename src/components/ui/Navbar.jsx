@@ -6,7 +6,7 @@ import Logout from "./Logout";
 const Navbar = ({ isLogin, toggleAddForm }) => {
   return (
     <nav className="flex flex-wrap justify-center items-center w-full h-fit overflow-hidden p-0">
-      <div className="flex flex-wrap gap-4 items-center justify-center w-full sm:justify-between">
+      <div className="flex flex-wrap gap-4 items-center w-full justify-between text-center">
         <div>
           <Link href="/">
             <h1 className="text-xl font-semibold start-0 dark:text-orange-500 dark:hover:text-orange-600 transition-all duration-200 ease-in-out">
@@ -14,7 +14,7 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
             </h1>
           </Link>
         </div>
-        <div className="flex items-center justify-between gap-4 text-slate-50/50">
+        <div className="flex flex-wrap items-center gap-4 text-slate-50/50">
           {links.map((l) => (
             <Link
               key={l.id}
