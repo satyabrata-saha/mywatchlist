@@ -11,7 +11,7 @@ const Category = () => {
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>
-        <div className=" w-[90%] sm:max-w-3xl mx-auto h-full mb-2">
+        <div className=" w-full sm:max-w-3xl mx-auto h-fit mb-2">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-rows-* gap-4 text-center tracking-wider">
             {category.map((item) => (
               <Link

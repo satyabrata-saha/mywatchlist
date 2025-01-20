@@ -34,10 +34,10 @@ const Card = ({
   }, []);
 
   return (
-    <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-2 rounded-lg shadow-xl hover:scale-[100.5%] transition-all duration-300 ease-in-out">
+    <div className="flex flex-col justify-start items-center overflow-hidden sm:w-full min-h-full border border-slate-100/5 p-1 sm:p-2 rounded-lg shadow-xl hover:scale-[100.5%] transition-all duration-300 ease-in-out">
       <div className="w-full h-full flex flex-col justify-between">
-        <Link href={link} className="w-full h-full" target="_blank">
-          <div className="w-full h-[300px] sm:h-[275px] flex items-center justify-center">
+        <Link href={link} className="w-full h-[318px]" target="_blank">
+          <div className="h-full flex items-center justify-center">
             <Image
               src={thumbnail || "/placeholder.png"}
               alt={title}
@@ -45,13 +45,13 @@ const Card = ({
               blurDataURL={thumbnail || "/placeholder.png"}
               width={150}
               height={150}
-              className="rounded-lg object-center w-full h-full hover:scale-[101%] transition-all duration-300 ease-in-out"
+              className="rounded-lg object-cover w-full h-full hover:scale-[101%] transition-all duration-300 ease-in-out"
             />
           </div>
         </Link>
         <div className="flex flex-col items-baseline justify-center gap-2 w-full h-full">
           <Link href={link} className="w-full h-full">
-            <h5 className="text-sm text-blue-200/75 font-semibold mt-4 pb-2 text-balance hover:text-blue-300 transition-all duration-200 ease-in-out">
+            <h5 className="text-sm sm:text-base text-blue-200/75 font-semibold mt-4 pb-2 text-balance hover:text-blue-300 transition-all duration-200 ease-in-out">
               {title}
             </h5>
           </Link>

@@ -50,7 +50,11 @@ const FullNavbar = ({ search, hidden = false }) => {
     <div className="w-full h-fit items-start justify-start">
       <Navbar isLogin={isLogin} toggleAddForm={toggleAddForm} />
       <hr className="my-2 opacity-10" />
-      <CategoryNavbar hidden={hidden} />
+      <CategoryNavbar
+        hidden={hidden}
+        isLogin={isLogin}
+        toggleAddForm={toggleAddForm}
+      />
       <hr className="my-2 opacity-0" />
       <SearchBar isLogin={true} search={search} hidden={hidden} />
       <hr className="my-2 opacity-0" />

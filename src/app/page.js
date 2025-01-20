@@ -110,7 +110,7 @@ export default function Home() {
         <div className="my-6 flex flex-col gap-4 items-center justify-center ">
           <Link
             href="/watchlist"
-            className="bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-2 px-4 rounded-full transition-all duration-150 ease-in-out"
+            className="text-sm sm:text-base bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-2 px-4 rounded-full transition-all duration-150 ease-in-out"
           >
             Load More
           </Link>

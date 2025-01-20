@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
   return (
-    <div className="text-center w-full my-4 flex flex-col gap-4 items-center justify-center">
+    <div className="text-center w-full mb-8 flex flex-col gap-4 items-center justify-center text-sm sm:text-base">
       <div className="w-full">
         <hr className="my-2 opacity-10" />
         <p>Create by Satyabrata Saha &copy; {new Date().getFullYear()}</p>
