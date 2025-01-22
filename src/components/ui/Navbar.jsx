@@ -1,7 +1,6 @@
 import { links } from "@/lib/constant";
 import Link from "next/link";
 import React from "react";
-import Logout from "./Logout";
 
 const Navbar = ({ isLogin, toggleAddForm }) => {
   return (
@@ -31,13 +30,15 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
           >
             Login
           </Link> */}
-          <button
-            onClick={toggleAddForm}
-            hidden={!isLogin}
-            className="hidden sm:inline bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-1 px-3.5 rounded-full transition-all duration-150 ease-in-out"
-          >
-            Add
-          </button>
+          <span className="hidden sm:inline">
+            <button
+              onClick={toggleAddForm}
+              hidden={!isLogin}
+              className="bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-1 px-3.5 rounded-full transition-all duration-150 ease-in-out"
+            >
+              Add
+            </button>
+          </span>
           {/* <Logout hidden={!isLogin} /> */}
         </div>
       </div>

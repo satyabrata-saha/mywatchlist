@@ -51,17 +51,20 @@ const Card = ({
         </Link>
         <div className="flex flex-col items-baseline justify-center gap-2 w-full h-full">
           <Link href={link} className="w-full h-full">
-            <h5 className="text-sm sm:text-base text-blue-200/75 font-semibold mt-4 pb-2 text-balance hover:text-blue-300 transition-all duration-200 ease-in-out">
-              {title}
+            <h5 className="text-sm sm:text-base text-blue-200/75 font-semibold mt-4 pb-2 text-wrap hover:text-blue-300 transition-all duration-200 ease-in-out">
+              <span className="block">{title}</span>
+              <span className="text-slate-100/50 text-xs sm:text-sm">
+                {alternativeTitle ? ` ( ${alternativeTitle} )` : ""}
+              </span>
             </h5>
           </Link>
 
-          {alternativeTitle && (
+          {/* {alternativeTitle && (
             <p className="text-xs text-slate-100/50">
               <span className="text-slate-100/75">Alternative Title: </span>
               <span>{alternativeTitle}</span>
             </p>
-          )}
+          )} */}
 
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Type: </span>
@@ -103,7 +106,7 @@ const Card = ({
           </p>
           <p className="text-xs text-yellow-500/50">
             <span className="text-slate-100/75">Rating: </span>
-            <span>{rating}</span>
+            <span>{rating || "?"}</span>
             <span className="text-slate-100/75"> /10</span>
           </p>
           {isLogin && (
