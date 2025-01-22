@@ -83,12 +83,17 @@ const Card = ({
             </span>
           </p>
           <p className="text-xs text-slate-100/50">
-            <span className="text-slate-100/75">Start Date: </span>
-            <span>{start_date?.split("T")[0]}</span>
-          </p>
-          <p className="text-xs text-slate-100/50">
-            <span className="text-slate-100/75">End Date: </span>
-            <span>{end_date?.split("T")[0]}</span>
+            <span className="text-slate-100/75">Date: </span>
+            <br />
+            <span>
+              {start_date
+                ? start_date?.split("T")[0].split("-").join("/")
+                : "?"}
+            </span>
+            <span className="text-slate-100/25"> ~ </span>
+            <span>
+              {end_date ? end_date?.split("T")[0].split("-").join("/") : "?"}
+            </span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Status: </span>
@@ -106,7 +111,6 @@ const Card = ({
               <Link
                 href={`/anime/${id}`}
                 className="text-blue-500 hover:text-blue-500 transition-all duration-200 ease-in-out"
-                target="_blank"
               >
                 <span className="flex gap-1">
                   Edit <MdEditNote size={16} />

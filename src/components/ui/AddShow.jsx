@@ -75,7 +75,7 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
           className="absolute top-0 left-0 w-screen h-screen  opacity-50 z-0 cursor-pointer"
         />
         <form
-          className="z-10 flex flex-col items-center justify-center gap-4 w-full h-fit sm:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
+          className="z-10 flex flex-col items-center justify-center gap-4 w-full h-fit sm:w-3/4 lg:w-1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
           onSubmit={handleClick}
         >
           <input
@@ -124,22 +124,25 @@ const AddShow = ({ isAddFormClose, AddFormClose }) => {
             value={data.genres}
             required
           />
-          <input
-            type="date"
-            placeholder="Start Date"
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm "
-            onChange={(e) => setData({ ...data, startDate: e.target.value })}
-            value={data.startDate}
-            required={false}
-          />
-          <input
-            type="date"
-            placeholder="End Date"
-            className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
-            onChange={(e) => setData({ ...data, endDate: e.target.value })}
-            value={data.endDate}
-            required={false}
-          />
+          <div className="flex justify-between items-center w-full gap-4">
+            <input
+              type="date"
+              placeholder="Start Date"
+              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+              onChange={(e) => setData({ ...data, startDate: e.target.value })}
+              value={data.startDate}
+              required={false}
+            />
+            <span className="text-slate-500">To</span>
+            <input
+              type="date"
+              placeholder="End Date"
+              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+              onChange={(e) => setData({ ...data, endDate: e.target.value })}
+              value={data.endDate}
+              required={false}
+            />
+          </div>
 
           <select
             className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"

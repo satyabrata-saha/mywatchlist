@@ -5,7 +5,7 @@ import { verifyAuth } from "@/lib/auth";
 export async function POST(request = NextRequest) {
   const categoryData = await request.json();
   // const user = await verifyAuth(request);
-  const values = [`%${categoryData.category}%`];
+  const values = [`%${categoryData.category}%`, "Plan to Watch"];
 
   // if (!user.username) {
   //   const q =
@@ -40,7 +40,7 @@ export async function POST(request = NextRequest) {
   //   // });
   // }
   const q =
-    "SELECT * FROM watchlist_items WHERE category ILIKE $1 ORDER BY id DESC";
+    "SELECT * FROM watchlist_items WHERE category ILIKE $1 AND status != $2 ORDER BY id DESC";
   try {
     const res = await query(q, values);
 

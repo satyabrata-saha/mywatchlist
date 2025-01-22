@@ -12,12 +12,13 @@ export async function GET(request = NextRequest) {
   //     login: false,
   //   });
   // }
+  const values = ["Plan to Watch"];
 
-  const q = "SELECT * FROM watchlist_items ORDER BY id DESC";
+  const q = "SELECT * FROM watchlist_items WHERE status != $1 ORDER BY id DESC";
   const q2 = "SELECT total_show FROM total_show WHERE id = 1";
 
   try {
-    const res = await query(q);
+    const res = await query(q, values);
     const res2 = await query(q2);
 
     return NextResponse.json({
@@ -46,8 +47,8 @@ export async function POST(request = NextRequest) {
   //   });
   // }
   const q =
-    "SELECT * FROM watchlist_items WHERE title ILIKE $1 ORDER BY id DESC";
-  const values = [`%${searchData.title}%`];
+    "SELECT * FROM watchlist_items WHERE title ILIKE $1 AND status != $2 ORDER BY id DESC";
+  const values = [`%${searchData.title}%`, "Plan to Watch"];
   try {
     const res = await query(q, values);
 

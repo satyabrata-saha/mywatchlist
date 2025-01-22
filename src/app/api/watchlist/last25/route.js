@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import { query } from "@/lib/db";
 
 export async function GET() {
-  const q = "SELECT * FROM watchlist_items ORDER BY id DESC LIMIT 25";
+  const values = ["Plan to Watch"];
+  const q =
+    "SELECT * FROM watchlist_items WHERE status != $1 ORDER BY id DESC LIMIT 25";
   const q2 = "SELECT total_show FROM total_show WHERE id = 1";
   try {
-    const res = await query(q);
+    const res = await query(q, values);
     const res2 = await query(q2);
     return NextResponse.json({
       status: 200,
