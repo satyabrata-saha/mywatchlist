@@ -38,7 +38,7 @@ const CategoryNavbar = ({
           ))}
           <button
             onClick={toggleAddForm}
-            hidden={!isLogin}
+            hidden={isLogin}
             className="text-xs sm:text-sm sm:hidden bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium px-3.5 py-1.5 rounded-full transition-all duration-150 ease-in-out"
           >
             Add

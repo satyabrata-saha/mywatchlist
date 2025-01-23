@@ -21,13 +21,6 @@ export async function POST(request = NextRequest) {
   try {
     const res = await query(q, values);
 
-    //update total_show
-    const q2 = `SELECT id FROM watchlist_items`;
-    const res2 = await query(q2);
-    const total_shows = res2.rows.length;
-    const q3 = `UPDATE total_show SET total_show = $1 WHERE id = 1 RETURNING *`;
-    const res3 = await query(q3, [total_shows]);
-
     return NextResponse.json({
       login: true,
       status: 200,

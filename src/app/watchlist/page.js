@@ -18,13 +18,7 @@ const Watchlist = () => {
     });
 
     const data = await res.json();
-    // console.log(data);
-
-    if (data.login) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
+    setIsLogin(data.login);
   };
   const searchShow = async (title) => {
     if (!title) {
@@ -70,7 +64,7 @@ const Watchlist = () => {
     <div className="flex flex-col items-center justify-start min-w-full min-h-full px-2 sm:px-4">
       <div className="w-full min-h-screen flex flex-col justify-between sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
-          <FullNavbar search={searchShow} />
+          <FullNavbar search={searchShow} login={isLogin} />
         </div>
         <div className="w-full h-full flex flex-col items-center justify-between">
           <p className="text-slate-50/50 font-semibold tracking-wider text-center pt-2">

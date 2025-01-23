@@ -23,23 +23,15 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
               {l.name}
             </Link>
           ))}
-          {/* <Link
-            href="/login"
-            hidden={isLogin}
-            className=" py-1 px-3.5 text-sm text-slate-50 focus:outline-none rounded-full border border-orange-500 hover:bg-orange-500 transition-all duration-150 ease-in-out"
-          >
-            Login
-          </Link> */}
           <span className="hidden sm:inline">
             <button
               onClick={toggleAddForm}
-              hidden={!isLogin}
+              hidden={isLogin}
               className="bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-1 px-3.5 rounded-full transition-all duration-150 ease-in-out"
             >
               Add
             </button>
           </span>
-          {/* <Logout hidden={!isLogin} /> */}
         </div>
       </div>
     </nav>

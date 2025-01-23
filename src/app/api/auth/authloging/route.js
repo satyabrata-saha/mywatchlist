@@ -41,6 +41,7 @@ export async function POST(request = NextRequest) {
     return NextResponse.json({
       status: 500,
       message: "Something went wrong",
+      login: false,
     });
   }
 }

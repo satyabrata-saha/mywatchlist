@@ -59,16 +59,11 @@ const Card = ({
             </h5>
           </Link>
 
-          {/* {alternativeTitle && (
-            <p className="text-xs text-slate-100/50">
-              <span className="text-slate-100/75">Alternative Title: </span>
-              <span>{alternativeTitle}</span>
-            </p>
-          )} */}
-
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Type: </span>
-            <span>{category}</span>
+            <Link href={`/category/${category.toLowerCase()}`}>
+              <span>{category}</span>
+            </Link>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Genres: </span>

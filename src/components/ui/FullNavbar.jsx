@@ -10,7 +10,7 @@ import {
 } from "@/components/ui";
 import { useRouter } from "next/navigation";
 
-const FullNavbar = ({ search, hidden = false }) => {
+const FullNavbar = ({ search, hidden = false, login }) => {
   const router = useRouter();
 
   const [isLogin, setIsLogin] = useState(false);
@@ -23,27 +23,9 @@ const FullNavbar = ({ search, hidden = false }) => {
     setIsAddFormClose(boolValue);
   };
 
-  const getCookieSetLoginState = async () => {
-    const res = await fetch("/api/auth/authloging", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await res.json();
-    // console.log(data);
-
-    if (data.login) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
-  };
-
   useEffect(() => {
     setIsAddFormClose(true);
-    getCookieSetLoginState();
+    setIsLogin(login || false);
   }, []);
 
   return (
