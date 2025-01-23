@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [watchlistData, setWatchlistData] = useState([]);
   const [message, setMessage] = useState("");
-  const [total_show, setTotal_show] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
 
   const getCookieSetLoginState = async () => {
@@ -33,7 +32,7 @@ export default function Home() {
       getData();
     }
     if (title.length > 0) {
-      const res = await fetch("/api/watchlist/last25", {
+      const res = await fetch("/api/watchlist/24", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +46,7 @@ export default function Home() {
     }
   };
   const getData = async () => {
-    const res = await fetch("/api/watchlist/last25", {
+    const res = await fetch("/api/watchlist/last24", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,8 +55,6 @@ export default function Home() {
     const data = await res.json();
     setWatchlistData(data.data);
     setMessage(data.message);
-    setTotal_show(data.total_show);
-    // console.log(data.data);
   };
   useEffect(() => {
     getData();
@@ -75,9 +72,6 @@ export default function Home() {
           <FullNavbar search={searchShow} />
         </div>
         <div className="w-full h-full flex flex-col items-center justify-between">
-          <p className="text-slate-50/50 font-semibold tracking-wider text-center pt-2">
-            Total Shows: {total_show}
-          </p>
           <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-4 mt-4 h-fit">
             {watchlistData.length > 0 ? (
               watchlistData.map((item) => (

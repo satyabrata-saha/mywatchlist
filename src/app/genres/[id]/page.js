@@ -11,6 +11,7 @@ const GenresSingle = () => {
 
   const [watchlistData, setWatchlistData] = useState([]);
   const [message, setMessage] = useState("");
+  const [total_show, setTotal_show] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
 
   const getCookieSetLoginState = async () => {
@@ -58,6 +59,7 @@ const GenresSingle = () => {
     const data = await res.json();
     setWatchlistData(data.data || []);
     setMessage(data.message);
+    setTotal_show(data.total_show || 0);
   };
   useEffect(() => {
     getData();
@@ -77,6 +79,9 @@ const GenresSingle = () => {
         <div>
           <h1 className="text-3xl font-bold text-slate-50 mb-4">{urlData}</h1>
         </div>
+        <p className="text-slate-50/50 font-semibold tracking-wider text-center pt-2">
+          Total Shows in this Genre: {total_show}
+        </p>
         <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-4 mt-4 h-fit">
           {watchlistData.length > 0 ? (
             watchlistData.map((item) => (
