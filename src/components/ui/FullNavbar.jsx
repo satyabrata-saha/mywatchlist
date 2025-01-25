@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import {
   AddShow,
   CategoryNavbar,
-  Logout,
   Navbar,
   SearchBar,
   StatusNavbar,

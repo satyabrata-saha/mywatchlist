@@ -22,6 +22,8 @@ const Card = ({
   useEffect(() => {
     if (status === "Watching") {
       setColorStatus("text-blue-500/50");
+    } else if (status === "Reading") {
+      setColorStatus("text-purple-500/50");
     } else if (status === "Completed") {
       setColorStatus("text-green-500/50");
     } else if (status === "On Hold") {
@@ -68,7 +70,7 @@ const Card = ({
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Genres: </span>
 
-            <span className="flex flex-wrap gap-1 mt-1">
+            <span className="flex flex-wrap gap-1 mt-1 tracking-wide">
               {genres.split(", ").map((genre, index) => (
                 <Link
                   key={index}
@@ -96,7 +98,9 @@ const Card = ({
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Status: </span>
             <Link href={`/status/${status.toLowerCase()}`}>
-              <span className={`${colorStatus} font-semibold`}>{status}</span>
+              <span className={`${colorStatus} tracking-wider font-semibold`}>
+                {status}
+              </span>
             </Link>
           </p>
           <p className="text-xs text-yellow-500/50">

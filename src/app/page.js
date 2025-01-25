@@ -26,7 +26,7 @@ export default function Home() {
       getData();
     }
     if (title.length > 0) {
-      const res = await fetch("/api/watchlist/24", {
+      const res = await fetch("/api/watchlist/last24", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

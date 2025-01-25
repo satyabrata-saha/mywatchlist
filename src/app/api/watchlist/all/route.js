@@ -26,7 +26,7 @@ export async function GET(request = NextRequest) {
 export async function POST(request = NextRequest) {
   const searchData = await request.json();
   const q =
-    "SELECT * FROM watchlist_items WHERE title ILIKE $1 AND status != $2 ORDER BY id DESC";
+    "SELECT * FROM watchlist_items WHERE (title ILIKE $1 OR alternative_title ILIKE $1) AND status != $2 ORDER BY id DESC";
   const values = [`%${searchData.title}%`, "Plan to Watch"];
   try {
     const res = await query(q, values);
