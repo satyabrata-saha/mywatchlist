@@ -179,14 +179,14 @@ const SinglePage = () => {
   }, [data, tempData]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4 z-0">
-      <div className="w-full min-h-screen flex flex-col justify-between sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
+    <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4 z-0 text-sm sm:text-base">
+      <div className="min-h-screen flex flex-col justify-between w-full sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
           <FullNavbar search={() => {}} hidden={true} />
         </div>
         <div className="flex flex-col items-center justify-center flex-wrap h-fit w-full mb-8">
           <form
-            className="z-10 flex flex-col items-center justify-center gap-4 w-full sm:w-4/5 md:1/2 bg-slate-800 p-8 rounded-md shadow-lg required:outline-red-500"
+            className="z-10 flex flex-col items-center justify-center gap-4 w-full sm:w-4/5 md:1/2 bg-slate-800/50 p-4 sm:p-8 rounded-md shadow-lg required:outline-red-500"
             onSubmit={handleClick}
           >
             <input
@@ -214,18 +214,32 @@ const SinglePage = () => {
               value={data.alternativeTitle}
             />
 
-            <select
-              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
-              onChange={(e) => setData({ ...data, category: e.target.value })}
-              required
-              value={data.category}
-            >
-              {category.map((item) => (
-                <option key={item.id} value={item.name}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
+            <div className="flex justify-between items-center text-center w-full gap-3">
+              <select
+                className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
+                onChange={(e) => setData({ ...data, category: e.target.value })}
+                required
+                value={data.category}
+              >
+                {category.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
+                onChange={(e) => setData({ ...data, status: e.target.value })}
+                value={data.status}
+                required
+              >
+                {statusArray.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
             <input
               type="text"
@@ -235,35 +249,29 @@ const SinglePage = () => {
               value={data.genres}
               required
             />
-            <input
-              type="date"
-              placeholder="Start Date"
-              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm "
-              onChange={(e) => setData({ ...data, startDate: e.target.value })}
-              value={data.startDate?.split("T")[0]}
-              required={false}
-            />
-            <input
-              type="date"
-              placeholder="End Date"
-              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
-              onChange={(e) => setData({ ...data, endDate: e.target.value })}
-              defaultValue={data.endDate?.split("T")[0]}
-              required={false}
-            />
 
-            <select
-              className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm required:outline-red-500"
-              onChange={(e) => setData({ ...data, status: e.target.value })}
-              value={data.status}
-              required
-            >
-              {statusArray.map((item) => (
-                <option key={item.id} value={item.name}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
+            <div className="block sm:flex justify-between items-center text-center w-full gap-3">
+              <input
+                type="date"
+                placeholder="Start Date"
+                className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm "
+                onChange={(e) =>
+                  setData({ ...data, startDate: e.target.value })
+                }
+                value={data.startDate?.split("T")[0]}
+                required={false}
+              />
+              <span className="text-slate-500">To</span>
+              <input
+                type="date"
+                placeholder="End Date"
+                className="w-full rounded-md text-black px-3 py-4 focus:outline-none placeholder:text-slate-500/50 placeholder:text-sm"
+                onChange={(e) => setData({ ...data, endDate: e.target.value })}
+                defaultValue={data.endDate?.split("T")[0]}
+                required={false}
+              />
+            </div>
+
             <input
               type="url"
               placeholder="Source URL"
@@ -285,20 +293,22 @@ const SinglePage = () => {
             />
             <p className="w-full">Rating: {data.rating}</p>
 
-            <button
-              type="submit"
-              disabled={buttonDisabled}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-blue-700/50 z-10 transition-all duration-200 ease-in-out"
-            >
-              Updated Show
-            </button>
-            <div className="w-full flex justify-end mt-[-3.4rem] z-0">
-              <abbr title="Delete">
-                <MdDeleteForever
-                  onClick={handleDelete}
-                  className="text-4xl cursor-pointer text-red-500 hover:text-red-600 transition-all duration-200 ease-in-out"
-                />
-              </abbr>
+            <div className="flex flex-col items-center justify-center gap-4 w-full mb-4 sm:mb-0">
+              <button
+                type="submit"
+                disabled={buttonDisabled}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-blue-700/50 z-10 transition-all duration-200 ease-in-out"
+              >
+                Updated Show
+              </button>
+              <div className="w-full flex justify-end mt-[-3.4rem] z-0">
+                <abbr title="Delete">
+                  <MdDeleteForever
+                    onClick={handleDelete}
+                    className="text-4xl cursor-pointer text-red-500 hover:text-red-600 transition-all duration-200 ease-in-out"
+                  />
+                </abbr>
+              </div>
             </div>
           </form>
         </div>
