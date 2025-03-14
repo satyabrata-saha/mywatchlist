@@ -1,7 +1,6 @@
 "use client";
 import { Card, Footer, FullNavbar } from "@/components/ui";
 import { sheetURL } from "@/lib/constant";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -170,6 +169,7 @@ export default function Home() {
     setWatchlistData(allData.reverse());
     setTotal_show(allData.length);
   };
+
   useEffect(() => {
     getData();
   }, []);
@@ -221,14 +221,6 @@ export default function Home() {
               )}
             </div>
           </div>
-        </div>
-        <div className="my-6 flex flex-col gap-4 items-center justify-center ">
-          <Link
-            href="/watchlist"
-            className="text-sm sm:text-base bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-2 px-4 rounded-full transition-all duration-150 ease-in-out"
-          >
-            Load More
-          </Link>
         </div>
         <div className="w-full pt-4 px-0">
           <Footer />

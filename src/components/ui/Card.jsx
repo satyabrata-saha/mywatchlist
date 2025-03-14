@@ -41,11 +41,9 @@ const Card = ({
       <div className="w-full h-full flex flex-col justify-between">
         <Link href={link} className="w-full h-fit" target="_blank">
           <div className="h-full flex items-center justify-center">
-            <Image
+            <img
               src={thumbnail || "/placeholder.png"}
               alt={title}
-              placeholder="blur"
-              blurDataURL={thumbnail || "/placeholder.png"}
               width={150}
               height={150}
               className="rounded-lg object-cover w-full h-fit hover:scale-[101%] transition-all duration-300 ease-in-out"
