@@ -94,13 +94,13 @@ const statusArray = [
     bgcolor: "dark:bg-red-500",
     bgcolorHover: "dark:hover:bg-red-600",
   },
-  {
-    id: 6,
-    name: "Plan to Watch",
-    textcolor: "text-slate-700",
-    bgcolor: "dark:bg-slate-700",
-    bgcolorHover: "dark:hover:bg-slate-800",
-  },
+  // {
+  //   id: 6,
+  //   name: "Plan to Watch",
+  //   textcolor: "text-slate-700",
+  //   bgcolor: "dark:bg-slate-700",
+  //   bgcolorHover: "dark:hover:bg-slate-800",
+  // },
 ];
 
 const links = [
@@ -111,11 +111,6 @@ const links = [
   },
   {
     id: 2,
-    name: "Watchlist",
-    href: "/watchlist",
-  },
-  {
-    id: 3,
     name: "Category",
     href: "/category",
   },

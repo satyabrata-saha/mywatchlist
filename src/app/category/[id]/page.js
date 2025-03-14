@@ -1,6 +1,5 @@
 "use client";
 import { Card, Footer, FullNavbar } from "@/components/ui";
-import toastMessage from "@/lib/toastMessage";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,64 +9,54 @@ const CategorySingle = () => {
   const urlData = id.split("%20").join(" ").toUpperCase();
 
   const [watchlistData, setWatchlistData] = useState([]);
-  const [message, setMessage] = useState("");
   const [total_show, setTotal_show] = useState(0);
-  const [isLogin, setIsLogin] = useState(false);
 
-  const getCookieSetLoginState = async () => {
-    const res = await fetch("/api/auth/authloging", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await res.json();
-    setIsLogin(data.login);
-  };
-  const searchShow = async (title) => {
-    if (!title) {
-      getData();
-    }
-    if (title.length > 0) {
-      const res = await fetch("/api/watchlist/category", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title: title }),
-      });
-      const data = await res.json();
-      setWatchlistData(data.data);
-    }
-  };
   const getData = async () => {
-    const res = await fetch("/api/watchlist/category", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ category: urlData }),
+    let data;
+    let res;
+    try {
+      data = await fetch(
+        "https://docs.google.com/spreadsheets/d/1UIAhtWf9cUk_W4tSxlrGI5-562yOaXBFTxz74vlgmUY/gviz/tq?tqx=out:json"
+      );
+      res = await data.text();
+    } catch (error) {
+      console.log(error);
+    }
+    //   console.log(res);
+
+    const json = JSON.parse(res.substring(47, res.length - 2));
+
+    const allData = json.table.rows.map((item) => {
+      return {
+        id: item.c[0]?.v,
+        title: item.c[1]?.v,
+        status: item.c[2]?.v,
+        alternative_title: item.c[3]?.v,
+        category: item.c[4]?.v,
+        genres: item.c[5]?.v,
+        start_date: item.c[6]?.f,
+        end_date: item.c[7]?.f,
+        thumbnail: item.c[8]?.v,
+        rating: item.c[9]?.v,
+        link: item.c[10]?.v,
+      };
     });
-    const data = await res.json();
-    setWatchlistData(data.data || []);
-    setMessage(data.message);
-    setTotal_show(data.total_show || 0);
+
+    const filteredData = allData.filter(
+      (item) => item.category.toLowerCase() === urlData.toLowerCase()
+    );
+    setWatchlistData(filteredData.reverse());
+    setTotal_show(filteredData.length);
   };
   useEffect(() => {
     getData();
-    getCookieSetLoginState();
   }, []);
-
-  useEffect(() => {
-    if (message.length > 0) toastMessage(message);
-  }, [message]);
 
   return (
     <div className="flex flex-col items-center justify-center min-w-full min-h-full px-2 sm:px-4">
       <div className="w-full min-h-screen flex flex-col justify-between sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
-          <FullNavbar search={searchShow} hidden={true} login={isLogin} />
+          <FullNavbar search={() => {}} hidden={true} />
         </div>
         <div>
           <h1 className="text-3xl font-bold text-slate-50 mb-4">{urlData}</h1>
@@ -89,9 +78,8 @@ const CategorySingle = () => {
                   end_date={item.end_date}
                   status={item.status}
                   rating={item.rating}
-                  alternativeTitle={item.alternative_title}
+                  alternative_title={item.alternative_title}
                   link={item.link}
-                  isLogin={isLogin}
                 />
               </div>
             ))

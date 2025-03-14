@@ -2,7 +2,7 @@ import { links } from "@/lib/constant";
 import Link from "next/link";
 import React from "react";
 
-const Navbar = ({ isLogin, toggleAddForm }) => {
+const Navbar = () => {
   return (
     <nav className="flex flex-wrap justify-center items-center w-full h-fit overflow-hidden p-0">
       <div className="flex gap-4 items-center w-full justify-between text-center">
@@ -23,15 +23,6 @@ const Navbar = ({ isLogin, toggleAddForm }) => {
               {l.name}
             </Link>
           ))}
-          <span className="hidden sm:inline">
-            <button
-              onClick={toggleAddForm}
-              hidden={isLogin}
-              className="bg-orange-500 hover:bg-orange-600 text-slate-50 font-medium py-1 px-3.5 rounded-full transition-all duration-150 ease-in-out"
-            >
-              Add
-            </button>
-          </span>
         </div>
       </div>
     </nav>

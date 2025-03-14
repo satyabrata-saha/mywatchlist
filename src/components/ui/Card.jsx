@@ -13,9 +13,8 @@ const Card = ({
   thumbnail,
   status,
   rating,
-  alternativeTitle,
+  alternative_title,
   link,
-  isLogin = false,
 }) => {
   const [colorStatus, setColorStatus] = useState("text-slate-100/50");
 
@@ -56,7 +55,7 @@ const Card = ({
             <h5 className="text-sm sm:text-base text-blue-200/75 font-semibold mt-4 pb-2 text-wrap hover:text-blue-300 transition-all duration-200 ease-in-out">
               <span className="block">{title}</span>
               <span className="text-slate-100/50 text-xs sm:text-sm">
-                {alternativeTitle ? ` ( ${alternativeTitle} )` : ""}
+                {alternative_title ? ` ( ${alternative_title} )` : ""}
               </span>
             </h5>
           </Link>
@@ -108,18 +107,6 @@ const Card = ({
             <span>{rating || "?"}</span>
             <span className="text-slate-100/75"> /10</span>
           </p>
-          {isLogin && (
-            <p className="text-xs text-slate-100/50 flex justify-center items-center">
-              <Link
-                href={`/anime/${id}`}
-                className="text-blue-500 hover:text-blue-500 transition-all duration-200 ease-in-out"
-              >
-                <span className="flex gap-1">
-                  Edit <MdEditNote size={16} />
-                </span>
-              </Link>
-            </p>
-          )}
         </div>
       </div>
     </div>

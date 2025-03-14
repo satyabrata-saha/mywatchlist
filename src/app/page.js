@@ -1,98 +1,107 @@
 "use client";
 import { Card, Footer, FullNavbar } from "@/components/ui";
-import toastMessage from "@/lib/toastMessage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [watchlistData, setWatchlistData] = useState([]);
-  const [message, setMessage] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
-
-  const getCookieSetLoginState = async () => {
-    const res = await fetch("/api/auth/authloging", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await res.json();
-    setIsLogin(data.login);
-  };
+  const [total_show, setTotal_show] = useState(0);
 
   const searchShow = async (title) => {
     if (!title) {
       getData();
     }
     if (title.length > 0) {
-      const res = await fetch("/api/watchlist/last24", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title: title }),
+      //filter data through title
+      const filteredData = watchlistData.filter((item) => {
+        return item.title.toLowerCase().includes(title.toLowerCase());
       });
-      const data = await res.json();
-      // console.log(data);
-      setWatchlistData(data.data);
-      setMessage(data.message);
+      //filter data through alternative title
+      const filteredDataAlt = watchlistData.filter((item) => {
+        return item.alternative_title
+          ?.toLowerCase()
+          .includes(title.toLowerCase());
+      });
+      setWatchlistData([...filteredData, ...filteredDataAlt]);
     }
   };
   const getData = async () => {
-    const res = await fetch("/api/watchlist/last24", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    let data;
+    let res;
+    try {
+      data = await fetch(
+        "https://docs.google.com/spreadsheets/d/1UIAhtWf9cUk_W4tSxlrGI5-562yOaXBFTxz74vlgmUY/gviz/tq?tqx=out:json"
+      );
+      res = await data.text();
+    } catch (error) {
+      console.log(error);
+    }
+    //   console.log(res);
+
+    const json = JSON.parse(res.substring(47, res.length - 2));
+
+    const allData = json.table.rows.map((item) => {
+      return {
+        id: item.c[0]?.v,
+        title: item.c[1]?.v,
+        status: item.c[2]?.v,
+        alternative_title: item.c[3]?.v,
+        category: item.c[4]?.v,
+        genres: item.c[5]?.v,
+        start_date: item.c[6]?.f,
+        end_date: item.c[7]?.f,
+        thumbnail: item.c[8]?.v,
+        rating: item.c[9]?.v,
+        link: item.c[10]?.v,
+      };
     });
-    const data = await res.json();
-    setWatchlistData(data.data);
-    setMessage(data.message);
+    console.log(allData);
+    // console.log(json.table.rows);
+    setWatchlistData(allData.reverse());
+    setTotal_show(allData.length);
   };
   useEffect(() => {
     getData();
-    getCookieSetLoginState();
   }, []);
-
-  useEffect(() => {
-    if (message.length > 0) toastMessage(message);
-  }, [message]);
 
   return (
     <div className="flex flex-col items-center justify-start min-w-full min-h-full px-2 sm:px-4">
       <div className="w-full min-h-screen flex flex-col justify-between sm:w-[99%] md:w-[98%] lg:w-[95%] xl:w-[95%] 2xl:w-[90%] 3xl:w-[85%]">
         <div className="w-full pt-4 px-0">
-          <FullNavbar search={searchShow} login={isLogin} />
+          <FullNavbar search={searchShow} hidden={false} />
         </div>
         <div className="w-full h-full flex flex-col items-center justify-between">
-          <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-4 mt-4 h-fit">
-            {watchlistData.length > 0 ? (
-              watchlistData.map((item) => (
-                <div key={item.id}>
-                  <Card
-                    id={item.id}
-                    title={item.title}
-                    thumbnail={item.thumbnail}
-                    category={item.category}
-                    genres={item.genres}
-                    start_date={item.start_date}
-                    end_date={item.end_date}
-                    status={item.status}
-                    rating={item.rating}
-                    alternativeTitle={item.alternative_title}
-                    link={item.link}
-                    isLogin={isLogin}
-                  />
+          <p className="text-slate-50/50 font-semibold tracking-wider text-center pt-2">
+            Total Shows: {total_show}
+          </p>
+          <div className="w-full h-full flex flex-col items-center justify-start">
+            <div className="grid grid-rows-* grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 3xl:grid-cols-8 gap-2 sm:gap-4 mt-4 h-fit">
+              {watchlistData.length > 0 ? (
+                watchlistData.map((item) => (
+                  <div key={item.id}>
+                    <Card
+                      id={item.id}
+                      title={item.title}
+                      thumbnail={item.thumbnail}
+                      category={item.category}
+                      genres={item.genres}
+                      start_date={item.start_date}
+                      end_date={item.end_date}
+                      status={item.status}
+                      rating={item.rating}
+                      alternative_title={item.alternative_title}
+                      link={item.link}
+                    />
+                  </div>
+                ))
+              ) : (
+                <div className="w-full h-4/5 flex items-center justify-center overflow-hidden col-span-full">
+                  <p className="animate-pulse text-center text-pretty font-semibold text-slate-50/50">
+                    loding data, if not shown try refreshing the page
+                  </p>
                 </div>
-              ))
-            ) : (
-              <div className="w-full h-4/5 flex items-center justify-center overflow-hidden col-span-full">
-                <p className="animate-pulse text-center text-pretty font-semibold text-slate-50/50">
-                  loding data, if not shown try refreshing the page
-                </p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
         <div className="my-6 flex flex-col gap-4 items-center justify-center ">

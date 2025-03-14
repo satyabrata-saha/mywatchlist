@@ -1,6 +1,6 @@
 {
-  "name": "mywatchlist",
-  "version": "1.0.1",
+  "name": "mywatchlist-google-sheets",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,13 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "jsonwebtoken": "^9.0.2",
     "next": "15.1.3",
-    "pg": "^8.13.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0",
-    "react-toastify": "^11.0.2"
+    "react-icons": "^5.4.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
