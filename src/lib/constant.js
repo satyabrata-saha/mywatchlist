@@ -103,17 +103,7 @@ const statusArray = [
   // },
 ];
 
-const links = [
-  {
-    id: 1,
-    name: "Home",
-    href: "/",
-  },
-  {
-    id: 2,
-    name: "Category",
-    href: "/category",
-  },
-];
+const sheetURL =
+  "https://docs.google.com/spreadsheets/d/1UIAhtWf9cUk_W4tSxlrGI5-562yOaXBFTxz74vlgmUY/gviz/tq?tqx=out:json";
 
-export { category, statusArray, links };
+export { category, statusArray, sheetURL };

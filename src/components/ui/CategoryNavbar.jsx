@@ -1,5 +1,4 @@
 import { category } from "@/lib/constant";
-import Link from "next/link";
 import React from "react";
 
 const CategoryNavbar = ({
@@ -8,6 +7,7 @@ const CategoryNavbar = ({
   gridClass,
   toggleAddForm,
   isLogin,
+  categorySearch,
 }) => {
   return (
     <div hidden={hidden} className="w-full tracking-wider">
@@ -19,7 +19,11 @@ const CategoryNavbar = ({
           } `}
         >
           {category.map((item) => (
-            <Link key={item.id} href={`/category/${item.name.toLowerCase()}`}>
+            <div
+              key={item.id}
+              onClick={() => categorySearch(item.name)}
+              className="cursor-pointer"
+            >
               <div
                 className={`${
                   className ||
@@ -34,7 +38,7 @@ const CategoryNavbar = ({
               >
                 {item.name}
               </div>
-            </Link>
+            </div>
           ))}
           <button
             onClick={toggleAddForm}

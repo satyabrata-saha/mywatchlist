@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { MdEditNote } from "react-icons/md";
 
 const Card = ({
   id,
@@ -15,6 +14,9 @@ const Card = ({
   rating,
   alternative_title,
   link,
+  genresSearch,
+  categorySearch,
+  statusSearch,
 }) => {
   const [colorStatus, setColorStatus] = useState("text-slate-100/50");
 
@@ -62,22 +64,25 @@ const Card = ({
 
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Type: </span>
-            <Link href={`/category/${category.toLowerCase()}`}>
+            <span
+              onClick={() => categorySearch(category)}
+              className="cursor-pointer"
+            >
               <span>{category}</span>
-            </Link>
+            </span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Genres: </span>
 
             <span className="flex flex-wrap gap-1 mt-1 tracking-wide">
               {genres.split(", ").map((genre, index) => (
-                <Link
+                <span
                   key={index}
-                  href={`/genres/${genre.toLowerCase()}`}
-                  className="bg-slate-100/10 px-2 py-1 rounded-lg hover:bg-slate-100/5 transition-all duration-200 ease-in-out"
+                  onClick={() => genresSearch(genre)}
+                  className="bg-slate-100/10 px-2 py-1 rounded-lg hover:bg-slate-100/5 transition-all duration-200 ease-in-out cursor-pointer"
                 >
                   <span>{genre} </span>
-                </Link>
+                </span>
               ))}
             </span>
           </p>
@@ -96,11 +101,14 @@ const Card = ({
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Status: </span>
-            <Link href={`/status/${status.toLowerCase()}`}>
+            <span
+              onClick={() => statusSearch(status)}
+              className="cursor-pointer"
+            >
               <span className={`${colorStatus} tracking-wider font-semibold`}>
                 {status}
               </span>
-            </Link>
+            </span>
           </p>
           <p className="text-xs text-yellow-500/50">
             <span className="text-slate-100/75">Rating: </span>
