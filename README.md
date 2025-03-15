@@ -10,7 +10,7 @@ My Link- [watchlist-next.satyabrata.dev](https://watchlist-next.satyabrata.dev/)
 
 **googlesheets** branch built in next.js 14.2.24 and uses Google sheets as a Readonly database and deploys on Cloudflare
 
-Google Sheet Link- [Open Sheet](https://docs.google.com/spreadsheets/d/1UIAhtWf9cUk_W4tSxlrGI5-562yOaXBFTxz74vlgmUY/edit?usp=sharing)
+Google Sheet Link- [Open Sheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vRVetAJz9CAxGbpbAYvB3w3walQ2iwJcER-oNxNL7t3INsfsX5eD2x5N8x2MF1DBJjYgy8bFWvSf44y/pubhtml)
 
 Cloudflare Link- [mywatchlist.pages.dev](https://mywatchlist.pages.dev/)
 
