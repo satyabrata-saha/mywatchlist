@@ -22,7 +22,17 @@ export default function Home() {
           ?.toLowerCase()
           .includes(title.toLowerCase());
       });
-      setWatchlistData([...filteredData, ...filteredDataAlt]);
+
+      const fiterdata = [
+        ...new Map(
+          [...filteredData, ...filteredDataAlt].map((item) => [item.id, item])
+        ).values(),
+      ];
+
+      // console.log(fiterdata);
+
+      setWatchlistData(fiterdata);
+      setTotal_show(filteredData.length);
     }
   };
 
