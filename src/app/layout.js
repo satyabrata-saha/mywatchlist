@@ -1,12 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Open_Sans, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
+const openSans = Open_Sans({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const robotsMono = Roboto_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="dark">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-50 dark:bg-gray-900 dark:text-gray-50 tracking-wide min-h-screen`}
+        className={`${openSans.variable} ${robotsMono.variable} antialiased bg-gray-900 text-gray-50 dark:bg-gray-900 dark:text-gray-50 tracking-wide min-h-screen`}
       >
         {children}
       </body>
