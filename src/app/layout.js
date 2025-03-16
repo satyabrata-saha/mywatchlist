@@ -25,6 +25,13 @@ export default function RootLayout({ children }) {
         className={`${openSans.variable} ${robotsMono.variable} antialiased bg-gray-900 text-gray-50 dark:bg-gray-900 dark:text-gray-50 tracking-wide min-h-screen`}
       >
         {children}
+        {/* <!-- Cloudflare Web Analytics --> */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "cc52d372fb934ec2bb49a3ef7973c008"}'
+        />
+        {/* <!-- End Cloudflare Web Analytics --> */}
       </body>
     </html>
   );
