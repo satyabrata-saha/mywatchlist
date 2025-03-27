@@ -66,7 +66,7 @@ export default function Home() {
     });
 
     const filteredData = allData.filter(
-      (item) => item.category.toLowerCase() === category.toLowerCase()
+      (item) => item.category?.toLowerCase() === category.toLowerCase()
     );
     setWatchlistData(filteredData.reverse());
     setTotal_show(filteredData.length);
@@ -102,7 +102,7 @@ export default function Home() {
     });
 
     const filteredData = allData.filter((item) =>
-      item.genres.toLowerCase().includes(genres.toLowerCase())
+      item.genres?.toLowerCase().includes(genres.toLowerCase())
     );
     setWatchlistData(filteredData.reverse());
     setTotal_show(filteredData.length);
@@ -140,7 +140,7 @@ export default function Home() {
     // console.log(json.table.rows);
     setWatchlistData(
       allData
-        .filter((item) => item.status.toLowerCase() === status.toLowerCase())
+        .filter((item) => item.status?.toLowerCase() === status.toLowerCase())
         .reverse()
     );
     setTotal_show(allData.filter((item) => item.status === status).length);
