@@ -66,7 +66,7 @@ const Card = ({
               onClick={() => categorySearch(category)}
               className="cursor-pointer"
             >
-              <span>{category || "?"}</span>
+              <span className="select-none">{category || "?"}</span>
             </span>
           </p>
           <p className="text-xs text-slate-100/50">
@@ -80,7 +80,7 @@ const Card = ({
                       onClick={() => genresSearch(genre)}
                       className="bg-slate-100/10 px-2 py-1 rounded-lg hover:bg-slate-100/5 transition-all duration-200 ease-in-out cursor-pointer"
                     >
-                      <span>{genre} </span>
+                      <span className="select-none">{genre} </span>
                     </span>
                   ))
                 : "?"}
@@ -99,7 +99,9 @@ const Card = ({
               onClick={() => statusSearch(status)}
               className="cursor-pointer"
             >
-              <span className={`${colorStatus} tracking-wider font-semibold`}>
+              <span
+                className={`${colorStatus} tracking-wider font-semibold select-none`}
+              >
                 {status}
               </span>
             </span>
