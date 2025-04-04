@@ -66,36 +66,32 @@ const Card = ({
               onClick={() => categorySearch(category)}
               className="cursor-pointer"
             >
-              <span>{category}</span>
+              <span>{category || "?"}</span>
             </span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Genres: </span>
 
             <span className="flex flex-wrap gap-1 mt-1 tracking-wide">
-              {genres?.split(", ").map((genre, index) => (
-                <span
-                  key={index}
-                  onClick={() => genresSearch(genre)}
-                  className="bg-slate-100/10 px-2 py-1 rounded-lg hover:bg-slate-100/5 transition-all duration-200 ease-in-out cursor-pointer"
-                >
-                  <span>{genre} </span>
-                </span>
-              ))}
+              {genres
+                ? genres?.split(", ").map((genre, index) => (
+                    <span
+                      key={index}
+                      onClick={() => genresSearch(genre)}
+                      className="bg-slate-100/10 px-2 py-1 rounded-lg hover:bg-slate-100/5 transition-all duration-200 ease-in-out cursor-pointer"
+                    >
+                      <span>{genre} </span>
+                    </span>
+                  ))
+                : "?"}
             </span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Date: </span>
             <br />
-            <span>
-              {start_date
-                ? start_date?.split("T")[0].split("-").join("/")
-                : "?"}
-            </span>
+            <span>{start_date || "?"}</span>
             <span className="text-slate-100/25"> ~ </span>
-            <span>
-              {end_date ? end_date?.split("T")[0].split("-").join("/") : "?"}
-            </span>
+            <span>{end_date || "?"}</span>
           </p>
           <p className="text-xs text-slate-100/50">
             <span className="text-slate-100/75">Status: </span>

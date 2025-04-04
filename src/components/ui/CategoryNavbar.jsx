@@ -21,7 +21,7 @@ const CategoryNavbar = ({ hidden, className, gridClass, categorySearch }) => {
                 className={`${
                   className ||
                   "text-sm px-3.5 py-1.5 dark:text-slate-200 dark:bg-slate-700 dark:hover:bg-slate-800"
-                } text-xs sm:text-sm font-bold rounded-full hover:scale-[105%] transition-all duration-200 ease-in-out w-full h-full`}
+                } select-none text-xs sm:text-sm font-bold rounded-full hover:scale-[105%] transition-all duration-200 ease-in-out w-full h-full`}
                 style={{
                   backgroundImage: `url(${item.bgImage})`,
                   backgroundSize: "cover",

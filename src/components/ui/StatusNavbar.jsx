@@ -15,7 +15,7 @@ const StatusNavbar = ({ hidden, statusSearch }) => {
               <div
                 className={`${item.bgcolor || "dark:bg-slate-700"} ${
                   item.bgcolorHover || "dark:hover:bg-slate-800"
-                } text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-full dark:text-slate-200 hover:scale-[105%] transition-all duration-200 ease-in-out`}
+                } select-none text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-full dark:text-slate-200 hover:scale-[105%] transition-all duration-200 ease-in-out`}
               >
                 {item.name}
               </div>
