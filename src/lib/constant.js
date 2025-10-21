@@ -103,7 +103,31 @@ const statusArray = [
   // },
 ];
 
+const getCategoryRibbonStyle = (categoryName) => {
+  switch (categoryName) {
+    case "Anime":
+      return "from-pink-500 to-yellow-500";
+    case "Movie":
+      return "from-green-500 to-blue-500";
+    case "TV Show":
+      return "from-purple-500 to-pink-500";
+    case "OVA":
+      return "from-yellow-400 to-red-400";
+    case "ONA":
+      return "from-red-500 to-orange-500";
+    case "Manga":
+    case "Manhwa":
+    case "Light Novel":
+    case "Novel":
+      return "from-blue-500 to-indigo-600";
+    case "Web Series":
+      return "from-teal-400 to-cyan-500";
+    default:
+      return "from-slate-500 to-slate-600";
+  }
+};
+
 const sheetURL =
   "https://docs.google.com/spreadsheets/d/1UIAhtWf9cUk_W4tSxlrGI5-562yOaXBFTxz74vlgmUY/gviz/tq?tqx=out:json";
 
-export { category, statusArray, sheetURL };
+export { category, statusArray, sheetURL, getCategoryRibbonStyle };
