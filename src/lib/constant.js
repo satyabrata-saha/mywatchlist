@@ -106,24 +106,27 @@ const statusArray = [
 const getCategoryRibbonStyle = (categoryName) => {
   switch (categoryName) {
     case "Anime":
-      return "from-pink-500 to-yellow-500";
+      return "from-red-500 via-orange-500 to-yellow-500";
     case "Movie":
-      return "from-green-500 to-blue-500";
+      return "from-cyan-700 via-blue-500 to-indigo-600";
     case "TV Show":
-      return "from-purple-500 to-pink-500";
+      return "from-indigo-500 via-purple-500 to-pink-500";
     case "OVA":
-      return "from-yellow-400 to-red-400";
+      return "from-pink-500 via-red-500 to-orange-500";
     case "ONA":
-      return "from-red-500 to-orange-500";
+      return "from-cyan-400 via-blue-400 to-indigo-400";
     case "Manga":
+      return "from-yellow-500 via-orange-500 to-red-500";
     case "Manhwa":
+      return "from-amber-500 via-orange-500 to-red-500";
     case "Light Novel":
+      return "from-blue-500 via-cyan-500 to-teal-500";
     case "Novel":
-      return "from-blue-500 to-indigo-600";
+      return "from-purple-500 via-indigo-500 to-blue-500";
     case "Web Series":
-      return "from-teal-400 to-cyan-500";
+      return "from-lime-500 via-green-500 to-emerald-500";
     default:
-      return "from-slate-500 to-slate-600";
+      return "from-rose-500 via-pink-500 to-red-500";
   }
 };
 

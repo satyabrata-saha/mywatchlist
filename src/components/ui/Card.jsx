@@ -86,22 +86,18 @@ const DetailsModal = ({ details, onClose }) => {
             </h3>
           </Link>
 
-          <p className="text-slate-300">
-            <span className="font-semibold text-slate-100">
-              Alternative Title:{" "}
-            </span>
-            <Link href={link || "#"} target="_blank">
-              <span
-                onClick={() => {
-                  categorySearch(category);
-                  onClose();
-                }}
-                className="cursor-pointer hover:underline"
-              >
-                {alternative_title ? `${alternative_title}` : ""}
+          {alternative_title ? (
+            <p className="text-slate-300">
+              <span className="font-semibold text-slate-100">
+                Alternative Title:{" "}
               </span>
-            </Link>
-          </p>
+              <Link href={link || "#"} target="_blank">
+                <span className="cursor-pointer hover:underline">
+                  {alternative_title ? `${alternative_title}` : ""}
+                </span>
+              </Link>
+            </p>
+          ) : null}
 
           <p className="text-slate-300">
             <span className="font-semibold text-slate-100">Type: </span>
@@ -163,6 +159,16 @@ const DetailsModal = ({ details, onClose }) => {
             <span>{rating || "?"}</span>
             <span className="text-slate-400"> / 10</span>
           </p>
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
+            >
+              <span>{category || "?"} Link</span>
+            </a>
+          )}
         </div>
       </div>
     </div>
