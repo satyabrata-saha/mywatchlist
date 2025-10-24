@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { getCategoryRibbonStyle } from "@/lib/constant";
+import { getCategoryRibbonStyle, statusArray } from "@/lib/constant";
 
 const getStatusColor = (status) => {
   switch (status) {
@@ -177,7 +177,7 @@ const DetailsModal = ({ details, onClose }) => {
 
 const Card = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { title, thumbnail, start_date, end_date } = props;
+  const { title, thumbnail, status } = props;
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -199,7 +199,11 @@ const Card = (props) => {
   return (
     <>
       <div
-        className="flex flex-col p-1 rounded-lg cursor-pointer group"
+        className={`flex flex-col p-1 rounded-lg cursor-pointer group 
+          ${statusArray.find((item) => item.name === status).bgcolor} hover:${
+          statusArray.find((item) => item.name === status).bgcolorHover
+        }
+          transition-colors`}
         onClick={openModal}
       >
         <div className="relative w-full overflow-hidden rounded-lg aspect-[2/3] shadow-lg group">
