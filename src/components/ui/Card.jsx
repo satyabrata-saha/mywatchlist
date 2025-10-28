@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { getCategoryRibbonStyle, statusArray } from "@/lib/constant";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 
 const getStatusColor = (status) => {
   switch (status) {
@@ -52,20 +54,7 @@ const DetailsModal = ({ details, onClose }) => {
           className="absolute top-3 right-3 text-slate-400 hover:text-white transition-colors"
           aria-label="Close modal"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <IoMdClose className="w-6 h-6" />
         </button>
 
         {/*LEFT Side Wrapper*/}
@@ -168,7 +157,7 @@ const DetailsModal = ({ details, onClose }) => {
               rel="noopener noreferrer"
               className="mt-4 flex-shrink-0 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
             >
-              <FiExternalLink size={18} />
+              <FaExternalLinkAlt size={18} />
               <span>{category || "?"} Detail Link</span>
             </a>
           )}
