@@ -40,11 +40,11 @@ const DetailsModal = ({ details, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 transition-opacity"
+      className="fixed inset-0 z-50 bg-black bg-opacity-75 transition-opacity overflow-y-auto sm:flex sm:items-center sm:justify-center"
       onClick={onClose}
     >
       <div
-        className="relative flex flex-col sm:flex-row gap-6 bg-slate-800/95 backdrop-blur-sm p-6 rounded-lg shadow-2xl max-w-2xl w-full mx-4 border border-slate-100/10 max-h-[95vh]"
+        className="relative flex flex-col sm:flex-row gap-6 bg-slate-800/95 backdrop-blur-sm p-6 rounded-lg shadow-2xl max-w-2xl w-full mx-auto my-12 sm:my-0 sm:mx-4 border border-slate-100/10 sm:max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -68,24 +68,21 @@ const DetailsModal = ({ details, onClose }) => {
           </svg>
         </button>
 
-        <div className="flex flex-col sm:flex-row gap-3 overflow-y-auto pr-2">
-          {/* left image */}
-          <div className="flex-shrink-0 w-full sm:w-1/3">
-            <img
-              src={thumbnail || "/placeholder.png"}
-              alt={title}
-              className="rounded-lg object-cover w-full h-auto"
-            />
-          </div>
+        {/*LEFT Side Wrapper*/}
+        <div className="flex-shrink-0 w-full sm:w-1/3">
+          <img
+            src={thumbnail || "/placeholder.png"}
+            alt={title}
+            className="rounded-lg object-cover w-full h-auto"
+          />
+        </div>
 
-          {/* right content */}
-          <div className="flex flex-col gap-3 w-full sm:w-2/3 text-sm min-h-0">
+        {/*RIGHT SIDE WRAPPER*/}
+        <div className="flex flex-col gap-3 w-full sm:w-2/3 text-sm sm:min-h-0">
+          <div className="flex flex-col gap-3 sm:flex-1 sm:overflow-y-auto sm:pr-2">
             <Link href={link || "#"} target="_blank">
               <h3 className="text-xl text-blue-200 font-bold hover:text-blue-300 transition-colors">
                 {title}
-                {/* <span className="block text-base text-slate-400 font-normal">
-                {alternative_title ? ` ( ${alternative_title} )` : ""}
-              </span> */}
               </h3>
             </Link>
 
@@ -162,17 +159,19 @@ const DetailsModal = ({ details, onClose }) => {
               <span>{rating || "?"}</span>
               <span className="text-slate-400"> / 10</span>
             </p>
-            {link && (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-0 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
-              >
-                <span>{category || "?"} Detail Link</span>
-              </a>
-            )}
           </div>
+
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex-shrink-0 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
+            >
+              <FiExternalLink size={18} />
+              <span>{category || "?"} Detail Link</span>
+            </a>
+          )}
         </div>
       </div>
     </div>
