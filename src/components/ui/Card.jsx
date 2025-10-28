@@ -44,7 +44,7 @@ const DetailsModal = ({ details, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative flex flex-col sm:flex-row gap-6 bg-slate-800/95 backdrop-blur-sm p-6 rounded-lg shadow-2xl max-w-2xl w-full mx-4 border border-slate-100/10"
+        className="relative flex flex-col sm:flex-row gap-6 bg-slate-800/95 backdrop-blur-sm p-6 rounded-lg shadow-2xl max-w-2xl w-full mx-4 border border-slate-100/10 max-h-[95vh]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -68,107 +68,111 @@ const DetailsModal = ({ details, onClose }) => {
           </svg>
         </button>
 
-        <div className="flex-shrink-0 w-full sm:w-1/3">
-          <img
-            src={thumbnail || "/placeholder.png"}
-            alt={title}
-            className="rounded-lg object-cover w-full h-auto"
-          />
-        </div>
-
-        <div className="flex flex-col gap-3 w-full sm:w-2/3 text-sm">
-          <Link href={link || "#"} target="_blank">
-            <h3 className="text-xl text-blue-200 font-bold hover:text-blue-300 transition-colors">
-              {title}
-              {/* <span className="block text-base text-slate-400 font-normal">
-                {alternative_title ? ` ( ${alternative_title} )` : ""}
-              </span> */}
-            </h3>
-          </Link>
-
-          {alternative_title ? (
-            <p className="text-slate-300">
-              <span className="font-semibold text-slate-100">
-                Alternative Title:{" "}
-              </span>
-              <Link href={link || "#"} target="_blank">
-                <span className="cursor-pointer hover:underline">
-                  {alternative_title ? `${alternative_title}` : ""}
-                </span>
-              </Link>
-            </p>
-          ) : null}
-
-          <p className="text-slate-300">
-            <span className="font-semibold text-slate-100">Type: </span>
-            <span
-              onClick={() => {
-                categorySearch(category);
-                onClose();
-              }}
-              className="cursor-pointer hover:underline"
-            >
-              {category || "?"}
-            </span>
-          </p>
-
-          <div>
-            <span className="font-semibold text-slate-100">Genres: </span>
-            <div className="flex flex-wrap gap-2 mt-1">
-              {genres
-                ? genres.split(", ").map((genre, index) => (
-                    <span
-                      key={index}
-                      onClick={() => {
-                        genresSearch(genre);
-                        onClose();
-                      }}
-                      className="bg-slate-700 px-2 py-1 rounded-md text-xs text-slate-200 hover:bg-slate-600 transition-colors cursor-pointer"
-                    >
-                      {genre}
-                    </span>
-                  ))
-                : "?"}
-            </div>
+        <div className="flex flex-col sm:flex-row gap-3 overflow-y-auto pr-2">
+          {/* left image */}
+          <div className="flex-shrink-0 w-full sm:w-1/3">
+            <img
+              src={thumbnail || "/placeholder.png"}
+              alt={title}
+              className="rounded-lg object-cover w-full h-auto"
+            />
           </div>
 
-          <p className="text-slate-300">
-            <span className="font-semibold text-slate-100">Date: </span>
-            <span>{start_date || "?"}</span>
-            <span className="text-slate-500"> ~ </span>
-            <span>{end_date || "?"}</span>
-          </p>
+          {/* right content */}
+          <div className="flex flex-col gap-3 w-full sm:w-2/3 text-sm min-h-0">
+            <Link href={link || "#"} target="_blank">
+              <h3 className="text-xl text-blue-200 font-bold hover:text-blue-300 transition-colors">
+                {title}
+                {/* <span className="block text-base text-slate-400 font-normal">
+                {alternative_title ? ` ( ${alternative_title} )` : ""}
+              </span> */}
+              </h3>
+            </Link>
 
-          <p className="text-slate-300">
-            <span className="font-semibold text-slate-100">Status: </span>
-            <span
-              onClick={() => {
-                statusSearch(status);
-                onClose();
-              }}
-              className={`${getStatusColor(
-                status
-              )} tracking-wider font-semibold cursor-pointer hover:underline`}
-            >
-              {status}
-            </span>
-          </p>
+            {alternative_title ? (
+              <p className="text-slate-300">
+                <span className="font-semibold text-slate-100">
+                  Alternative Title:{" "}
+                </span>
+                <Link href={link || "#"} target="_blank">
+                  <span className="cursor-pointer hover:underline">
+                    {alternative_title ? `${alternative_title}` : ""}
+                  </span>
+                </Link>
+              </p>
+            ) : null}
 
-          <p className="text-yellow-400">
-            <span className="font-semibold text-slate-100">Rating: </span>
-            <span>{rating || "?"}</span>
-            <span className="text-slate-400"> / 10</span>
-          </p>
-          {link && (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
-            >
-              <span>{category || "?"} Link</span>
-            </a>
-          )}
+            <p className="text-slate-300">
+              <span className="font-semibold text-slate-100">Type: </span>
+              <span
+                onClick={() => {
+                  categorySearch(category);
+                  onClose();
+                }}
+                className="cursor-pointer hover:underline"
+              >
+                {category || "?"}
+              </span>
+            </p>
+
+            <div>
+              <span className="font-semibold text-slate-100">Genres: </span>
+              <div className="flex flex-wrap gap-2 mt-1">
+                {genres
+                  ? genres.split(", ").map((genre, index) => (
+                      <span
+                        key={index}
+                        onClick={() => {
+                          genresSearch(genre);
+                          onClose();
+                        }}
+                        className="bg-slate-700 px-2 py-1 rounded-md text-xs text-slate-200 hover:bg-slate-600 transition-colors cursor-pointer"
+                      >
+                        {genre}
+                      </span>
+                    ))
+                  : "?"}
+              </div>
+            </div>
+
+            <p className="text-slate-300">
+              <span className="font-semibold text-slate-100">Date: </span>
+              <span>{start_date || "?"}</span>
+              <span className="text-slate-500"> ~ </span>
+              <span>{end_date || "?"}</span>
+            </p>
+
+            <p className="text-slate-300">
+              <span className="font-semibold text-slate-100">Status: </span>
+              <span
+                onClick={() => {
+                  statusSearch(status);
+                  onClose();
+                }}
+                className={`${getStatusColor(
+                  status
+                )} tracking-wider font-semibold cursor-pointer hover:underline`}
+              >
+                {status}
+              </span>
+            </p>
+
+            <p className="text-yellow-400">
+              <span className="font-semibold text-slate-100">Rating: </span>
+              <span>{rating || "?"}</span>
+              <span className="text-slate-400"> / 10</span>
+            </p>
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-0 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
+              >
+                <span>{category || "?"} Detail Link</span>
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
