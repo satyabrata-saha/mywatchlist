@@ -59,7 +59,7 @@ const DetailsModal = ({ details, onClose }) => {
 
         <div className="flex flex-col sm:flex-row gap-3 overflow-y-auto pr-2">
           {/* left image */}
-          <div className="flex-shrink-0 w-full sm:w-1/3">
+          <div className="flex-shrink-0 w-3/4 mx-auto sm:w-1/3 sm:mx-0">
             <img
               src={thumbnail || "/placeholder.png"}
               alt={title}
@@ -158,6 +158,7 @@ const DetailsModal = ({ details, onClose }) => {
                 rel="noopener noreferrer"
                 className="mt-4 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-0 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
               >
+                <FaExternalLinkAlt size={18} />
                 <span>{category || "?"} Detail Link</span>
               </a>
             )}
@@ -182,9 +183,11 @@ const Card = (props) => {
       }
     };
     if (isModalOpen) {
+      document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleEsc);
     }
     return () => {
+      document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleEsc);
     };
   }, [isModalOpen]);
