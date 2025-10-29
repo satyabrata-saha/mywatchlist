@@ -54,7 +54,7 @@ const DetailsModal = ({ details, onClose }) => {
           className="absolute top-3 right-3 text-slate-400 hover:text-white transition-colors"
           aria-label="Close modal"
         >
-          <IoMdClose className="w-6 h-6" />
+          <IoMdClose size={24} />
         </button>
 
         <div className="flex flex-col sm:flex-row gap-3 overflow-y-auto pr-2">
@@ -69,25 +69,14 @@ const DetailsModal = ({ details, onClose }) => {
 
           {/* right content */}
           <div className="flex flex-col gap-3 w-full sm:w-2/3 text-sm min-h-0">
-            <Link href={link || "#"} target="_blank">
-              <h3 className="text-xl text-blue-200 font-bold hover:text-blue-300 transition-colors">
-                {title}
-                {/* <span className="block text-base text-slate-400 font-normal">
-                {alternative_title ? ` ( ${alternative_title} )` : ""}
-              </span> */}
-              </h3>
-            </Link>
+            <h3 className="text-lg text-blue-200 font-bold ">{title}</h3>
 
             {alternative_title ? (
               <p className="text-slate-300">
                 <span className="font-semibold text-slate-100">
                   Alternative Title:{" "}
                 </span>
-                <Link href={link || "#"} target="_blank">
-                  <span className="cursor-pointer hover:underline">
-                    {alternative_title ? `${alternative_title}` : ""}
-                  </span>
-                </Link>
+                <span>{alternative_title ? `${alternative_title}` : ""}</span>
               </p>
             ) : null}
 
@@ -131,29 +120,32 @@ const DetailsModal = ({ details, onClose }) => {
               <span>{end_date || "?"}</span>
             </p>
 
-            <p className="text-slate-300">
-              <span className="font-semibold text-slate-100">Status: </span>
-              <span
-                onClick={() => {
-                  statusSearch(status);
-                  onClose();
-                }}
-                className={`${getStatusColor(
-                  status
-                )} tracking-wider font-semibold cursor-pointer hover:underline`}
-              >
-                {status}
-              </span>
-            </p>
+            <div className="flex flex-auto sm:flex-col gap-3">
+              <p className="text-slate-300">
+                <span className="font-semibold text-slate-100">Status: </span>
+                <span
+                  onClick={() => {
+                    statusSearch(status);
+                    onClose();
+                  }}
+                  className={`${getStatusColor(
+                    status
+                  )} tracking-wider font-semibold cursor-pointer hover:underline`}
+                >
+                  {status}
+                </span>
+              </p>
 
-            <p className="text-yellow-400">
-              <span className="font-semibold text-slate-100">Rating: </span>
-              <span>{rating || "?"}</span>
-              <span className="text-slate-400"> / 10</span>
-            </p>
+              <p className="text-yellow-400">
+                <span className="font-semibold text-slate-100">Rating: </span>
+                <span>{rating || "?"}</span>
+                <span className="text-slate-400"> / 10</span>
+              </p>
+            </div>
+
             {link && (
               <a
-                href={link}
+                href={link || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 flex items-center justify-center gap-2 w-full text-center bg-blue-600 text-white font-semibold py-2.5 px-0 sm:px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-blue-500"
