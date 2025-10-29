@@ -69,7 +69,9 @@ const DetailsModal = ({ details, onClose }) => {
 
           {/* right content */}
           <div className="flex flex-col gap-3 w-full sm:w-2/3 text-sm min-h-0">
-            <h3 className="text-lg text-blue-200 font-bold ">{title}</h3>
+            <h3 className="text-lg text-blue-200 font-bold sm:text-2xl">
+              {title}
+            </h3>
 
             {alternative_title ? (
               <p className="text-slate-300">
@@ -120,7 +122,7 @@ const DetailsModal = ({ details, onClose }) => {
               <span>{end_date || "?"}</span>
             </p>
 
-            <div className="flex flex-auto sm:flex-col gap-3">
+            <div className="flex flex-auto sm:flex-col justify-between gap-3">
               <p className="text-slate-300">
                 <span className="font-semibold text-slate-100">Status: </span>
                 <span
