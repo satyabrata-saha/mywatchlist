@@ -25,7 +25,7 @@ export default function Home() {
 
       const fiterdata = [
         ...new Map(
-          [...filteredData, ...filteredDataAlt].map((item) => [item.id, item])
+          [...filteredData, ...filteredDataAlt].map((item) => [item.id, item]),
         ).values(),
       ];
 
@@ -66,7 +66,7 @@ export default function Home() {
     });
 
     const filteredData = allData.filter(
-      (item) => item.category?.toLowerCase() === category.toLowerCase()
+      (item) => item.category?.toLowerCase() === category.toLowerCase(),
     );
     setWatchlistData(filteredData.reverse());
     setTotal_show(filteredData.length);
@@ -102,7 +102,7 @@ export default function Home() {
     });
 
     const filteredData = allData.filter((item) =>
-      item.genres?.toLowerCase().includes(genres.toLowerCase())
+      item.genres?.toLowerCase().includes(genres.toLowerCase()),
     );
     setWatchlistData(filteredData.reverse());
     setTotal_show(filteredData.length);
@@ -141,9 +141,79 @@ export default function Home() {
     setWatchlistData(
       allData
         .filter((item) => item.status?.toLowerCase() === status.toLowerCase())
-        .reverse()
+        .reverse(),
     );
     setTotal_show(allData.filter((item) => item.status === status).length);
+  };
+
+  //handle Filter That is start_date to end_date defferance is 0
+  const handleFilterThatIs = async (filter) => {
+    let data;
+    let res;
+    let json;
+    try {
+      data = await fetch(sheetURL);
+      res = await data.text();
+    } catch (error) {
+      console.log(error);
+    }
+    //   console.log(res);
+
+    if (filter === "Fhinish in one Day") {
+      json = JSON.parse(res.substring(47, res.length - 2));
+      const allData = json.table.rows.map((item) => {
+        return {
+          id: item.c[0]?.v,
+          title: item.c[1]?.v,
+          status: item.c[2]?.v,
+          alternative_title: item.c[3]?.v,
+          category: item.c[4]?.v,
+          genres: item.c[5]?.v,
+          start_date: item.c[6]?.f,
+          end_date: item.c[7]?.f,
+          thumbnail: item.c[8]?.v,
+          rating: item.c[9]?.v,
+          link: item.c[10]?.v,
+        };
+      });
+      setWatchlistData(
+        allData
+          .filter((item) =>
+            item.start_date
+              ? item.start_date?.split(" ")[0] === item.end_date?.split(" ")[0]
+              : null,
+          )
+          .reverse(),
+      );
+    } else if (Number(filter) > 0) {
+      json = JSON.parse(res.substring(47, res.length - 2));
+      const allData = json.table.rows.map((item) => {
+        return {
+          id: item.c[0]?.v,
+          title: item.c[1]?.v,
+          status: item.c[2]?.v,
+          alternative_title: item.c[3]?.v,
+          category: item.c[4]?.v,
+          genres: item.c[5]?.v,
+          start_date: item.c[6]?.f,
+          end_date: item.c[7]?.f,
+          thumbnail: item.c[8]?.v,
+          rating: item.c[9]?.v,
+          link: item.c[10]?.v,
+        };
+      });
+      console.log(
+        allData.filter((item) => item.rating?.v == Number(filter)).reverse(),
+      );
+      // setWatchlistData(
+      //   allData
+      //     .filter((item) => (item.rating ? item.rating?.v < filter : null))
+      //     .reverse(),
+      // );
+    }
+
+    // console.log(allData);
+    // console.log(json.table.rows);
   };
 
   const getData = async () => {
@@ -193,6 +263,7 @@ export default function Home() {
             categorySearch={categorySearch}
             statusSearch={statusSearch}
             hidden={false}
+            handleFilterThatIs={handleFilterThatIs}
           />
         </div>
         <div className="w-full h-full flex flex-col items-center justify-between">
