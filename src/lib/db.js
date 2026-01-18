@@ -4,7 +4,7 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-async function query(text, params) {
+export async function query(text, params) {
   const client = await pool.connect();
 
   try {
@@ -14,7 +14,3 @@ async function query(text, params) {
     client.release();
   }
 }
-
-module.exports = {
-  query,
-};
